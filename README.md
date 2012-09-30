@@ -26,6 +26,8 @@ digital signature algorithms:
   system. This adds a layer of defense against the possibility of weakness
   in the selected hash function.
 
+You can read more on [Dan Bernstein's Ed25519 site](http://ed25519.cr.yp.to/).
+
 Installation
 ------------
 
