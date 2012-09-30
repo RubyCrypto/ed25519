@@ -3,10 +3,10 @@ Red25519
 [![Build Status](https://secure.travis-ci.org/tarcieri/red25519.png?branch=master)](http://travis-ci.org/tarcieri/red25519)
 
 Red25519 provides a Ruby binding to the Ed25519 public-key signature system
-created by Dan Bernstein. The C implementation is taken from the SUPERCOP
-benchmark suite. Ed25519 provides a 128-bit security level, that is to say,
-all known attacks take at least 2^128 operations, providing the same security
-level as AES-128, NIST P-256, and RSA-3072.
+based on elliptic curves and created by Dan Bernstein. The C implementation
+is taken from the SUPERCOP benchmark suite. Ed25519 provides a 128-bit security
+level, that is to say, all known attacks take at least 2^128 operations,
+providing the same security level as AES-128, NIST P-256, and RSA-3072.
 
 Ed25519 has a number of unique properties that make it one of the best-in-class
 digital signature algorithms:
