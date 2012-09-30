@@ -10,10 +10,10 @@ describe Ed25519::Engine do
     pubkey, privkey = ary
 
     pubkey.should be_a String
-    pubkey.length.should eq 32
+    pubkey.length.should eq Ed25519::PUBLIC_KEY_BYTES
 
     privkey.should be_a String
-    privkey.length.should eq 64
+    privkey.length.should eq Ed25519::SECRET_KEY_BYTES
   end
 
   it "raises ArgumentError if the seed is not #{Ed25519::SECRET_KEY_BYTES / 2} long" do
