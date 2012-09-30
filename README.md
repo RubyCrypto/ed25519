@@ -1,5 +1,6 @@
 Red25519
 ========
+[![Build Status](https://secure.travis-ci.org/tarcieri/red25519.png?branch=master)](http://travis-ci.org/tarcieri/red25519)
 
 Red25519 provides a Ruby binding to the Ed25519 public-key signature system
 created by Dan Bernstein. The C implementation is taken from the SUPERCOP
