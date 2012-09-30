@@ -2,7 +2,9 @@ require 'red25519/version'
 require 'red25519_engine'
 
 module Ed25519
-  # Your code goes here...
+  SECRET_KEY_BYTES = 64
+  PUBLIC_KEY_BYTES = 32
+  SIGNATURE_BYTES  = 64
 end
 
 Red25519 = Ed25519

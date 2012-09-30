@@ -1,4 +1,5 @@
 #include "ruby.h"
+#include "crypto_sign.h"
 
 static VALUE mEd25519 = Qnil;
 static VALUE mEd25519_Engine = Qnil;
@@ -15,5 +16,17 @@ void Init_red25519_engine()
 
 static VALUE Ed25519_Engine_create_keypair(VALUE self, VALUE seed)
 {
-    return Qnil;
+    unsigned char verify_key[PUBLICKEYBYTES], signing_key[SECRETKEYBYTES];
+
+    seed = rb_convert_type(seed, T_STRING, "String", "to_str");
+
+    if(RSTRING_LEN(seed) != SECRETKEYBYTES / 2)
+        rb_raise(rb_eArgError, "seed must be exactly %d bytes", SECRETKEYBYTES / 2);
+
+    crypto_sign_publickey(verify_key, signing_key, RSTRING_PTR(seed));
+
+    rb_ary_new3(2,
+        rb_str_new(verify_key, PUBLICKEYBYTES),
+        rb_str_new(signing_key, SECRETKEYBYTES)
+    );
 }
