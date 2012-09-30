@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ed25519::Engine do
-  it "generates signing keys" do
-    Ed25519::Engine.create_signing_key
+  it "generates keypairs" do
+    Ed25519::Engine.create_keypair("foobar")
   end
 end
