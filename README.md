@@ -12,8 +12,8 @@ Ed25519 has a number of unique properties that make it one of the best-in-class
 digital signature algorithms:
 
 * ***Small keys***: Ed25519 keys are only 256-bits (32 bytes), making them
-  small enough to easily copy around. Ed25519 also allows the private key
-  to be derived from the public key, meaning that it doesn't need to be
+  small enough to easily copy around. Ed25519 also allows the public key
+  to be derived from the private key, meaning that it doesn't need to be
   included in a serialized private key in cases you want both.
 * ***Small signatures***: Ed25519 signatures are only 512-bits (64 bytes),
   one of the smallest signature sizes available.
