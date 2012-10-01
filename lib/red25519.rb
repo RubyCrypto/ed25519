@@ -1,5 +1,6 @@
 require 'red25519/version'
 require 'red25519_engine'
+require 'red25519/keys'
 
 module Ed25519
   SECRET_KEY_BYTES = 64
