@@ -7,4 +7,5 @@ module Ed25519
   SIGNATURE_BYTES  = 64
 end
 
+# TIMTOWTDI!!!
 Red25519 = Ed25519
