@@ -54,8 +54,8 @@ static VALUE Ed25519_Engine_sign(VALUE self, VALUE signing_key, VALUE msg)
 
 static VALUE Ed25519_Engine_verify(VALUE self, VALUE verify_key, VALUE signature, VALUE msg)
 {
-    unsigned char *sig_and_msg;
-    unsigned long long msg_len, sig_and_msg_len;
+    unsigned char *sig_and_msg, *buffer;
+    unsigned long long sig_and_msg_len, buffer_len;
     int result;
 
     if(RSTRING_LEN(verify_key) != PUBLICKEYBYTES)
@@ -66,15 +66,17 @@ static VALUE Ed25519_Engine_verify(VALUE self, VALUE verify_key, VALUE signature
 
     sig_and_msg_len = SIGNATUREBYTES + RSTRING_LEN(msg);
     sig_and_msg = (unsigned char *)xmalloc(sig_and_msg_len);
+    buffer      = (unsigned char *)xmalloc(sig_and_msg_len);
     memcpy(sig_and_msg, RSTRING_PTR(signature), SIGNATUREBYTES);
     memcpy(sig_and_msg + SIGNATUREBYTES, RSTRING_PTR(msg), RSTRING_LEN(msg));
 
     result = crypto_sign_open(
-        RSTRING_PTR(msg), &msg_len,
+        buffer, &buffer_len,
         sig_and_msg, sig_and_msg_len,
         RSTRING_PTR(verify_key));
 
     free(sig_and_msg);
+    free(buffer);
 
     return result == 0 ? Qtrue : Qfalse;
 }
