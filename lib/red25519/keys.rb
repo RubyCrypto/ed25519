@@ -28,6 +28,10 @@ module Ed25519
       Ed25519::Engine.sign(@signing_key, message)
     end
 
+    def inspect
+      "#<Ed25519::SigningKey:#{to_hex}>"
+    end
+
     def to_bytes
       @seed
     end
@@ -51,6 +55,10 @@ module Ed25519
 
     def verify(signature, message)
       Ed25519::Engine.verify(@key, signature, message)
+    end
+
+    def inspect
+      "#<Ed25519::VerifyKey:#{to_hex}>"
     end
 
     def to_bytes
