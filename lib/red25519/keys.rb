@@ -13,6 +13,10 @@ module Ed25519
       verify_key, @signing_key = Ed25519::Engine.create_keypair(seed)
       @verify_key = VerifyKey.new(verify_key)
     end
+
+    def sign(message)
+      Ed25519::Engine.sign(@signing_key, message)
+    end
   end
 
   class VerifyKey
