@@ -22,6 +22,10 @@ module Ed25519
       @seed
     end
     alias_method :to_s, :to_bytes
+
+    def to_hex
+      to_bytes.unpack("H*").first
+    end
   end
 
   class VerifyKey
@@ -35,6 +39,11 @@ module Ed25519
 
     def to_bytes
       @key
+    end
+    alias_method :to_s, :to_bytes
+
+    def to_hex
+      to_bytes.unpack("H*").first
     end
   end
 end

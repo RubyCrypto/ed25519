@@ -19,6 +19,12 @@ describe Ed25519::SigningKey do
     bytes.should be_a String
     bytes.length.should eq 32
   end
+
+  it "serializes to hex" do
+    hex = key.to_hex
+    hex.should be_a String
+    hex.length.should eq 64
+  end
 end
 
 describe Ed25519::VerifyKey do
@@ -38,5 +44,11 @@ describe Ed25519::VerifyKey do
     bytes = verify_key.to_bytes
     bytes.should be_a String
     bytes.length.should eq 32
+  end
+
+  it "serializes to hex" do
+    hex = verify_key.to_hex
+    hex.should be_a String
+    hex.length.should eq 64
   end
 end
