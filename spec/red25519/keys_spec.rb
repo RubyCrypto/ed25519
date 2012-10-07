@@ -24,6 +24,12 @@ describe Ed25519::SigningKey do
     hex.should be_a String
     hex.length.should eq 64
   end
+
+  it "initializes from hex" do
+    hex = key.to_hex
+    new_key = Ed25519::SigningKey.new(hex)
+    key.to_bytes.should == new_key.to_bytes
+  end
 end
 
 describe Ed25519::VerifyKey do
@@ -49,5 +55,11 @@ describe Ed25519::VerifyKey do
     hex = verify_key.to_hex
     hex.should be_a String
     hex.length.should eq 64
+  end
+
+  it "initializes from hex" do
+    hex = verify_key.to_hex
+    new_key = Ed25519::VerifyKey.new(hex)
+    verify_key.to_bytes.should == new_key.to_bytes
   end
 end

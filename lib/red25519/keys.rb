@@ -9,8 +9,15 @@ module Ed25519
     end
 
     def initialize(seed)
-      @seed = seed
-      verify_key, @signing_key = Ed25519::Engine.create_keypair(seed)
+      case seed.length
+      when 32
+        @seed = seed
+      when 64
+        @seed = [seed].pack("H*")
+      else raise ArgumentError, "seed must be 32 or 64 bytes long"
+      end
+
+      verify_key, @signing_key = Ed25519::Engine.create_keypair(@seed)
       @verify_key = VerifyKey.new(verify_key)
     end
 
@@ -29,8 +36,14 @@ module Ed25519
   end
 
   class VerifyKey
-    def initialize(bytes)
-      @key = bytes
+    def initialize(string)
+      case string.length
+      when 32
+        @key = string
+      when 64
+        @key = [string].pack("H*")
+      else raise ArgumentError, "seed must be 32 or 64 bytes long"
+      end
     end
 
     def verify(signature, message)
