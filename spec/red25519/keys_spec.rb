@@ -13,6 +13,12 @@ describe Ed25519::SigningKey do
   it "signs messages" do
     key.sign(message).should be_a String
   end
+
+  it "serializes to bytes" do
+    bytes = key.to_bytes
+    bytes.should be_a String
+    bytes.length.should eq 32
+  end
 end
 
 describe Ed25519::VerifyKey do
@@ -26,5 +32,11 @@ describe Ed25519::VerifyKey do
 
     bad_signature = signature[0...63] + "X"
     verify_key.verify(bad_signature, message).should be_false
+  end
+
+  it "serializes to bytes" do
+    bytes = verify_key.to_bytes
+    bytes.should be_a String
+    bytes.length.should eq 32
   end
 end

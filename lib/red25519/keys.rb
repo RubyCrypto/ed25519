@@ -17,6 +17,11 @@ module Ed25519
     def sign(message)
       Ed25519::Engine.sign(@signing_key, message)
     end
+
+    def to_bytes
+      @seed
+    end
+    alias_method :to_s, :to_bytes
   end
 
   class VerifyKey
@@ -26,6 +31,10 @@ module Ed25519
 
     def verify(signature, message)
       Ed25519::Engine.verify(@key, signature, message)
+    end
+
+    def to_bytes
+      @key
     end
   end
 end
