@@ -23,5 +23,9 @@ module Ed25519
     def initialize(bytes)
       @key = bytes
     end
+
+    def verify(signature, message)
+      Ed25519::Engine.verify(@key, signature, message)
+    end
   end
 end
