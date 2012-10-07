@@ -5,7 +5,6 @@ describe Ed25519::SigningKey do
   let(:message) { "example message" }
 
   it "generates keypairs" do
-
     key.should be_a Ed25519::SigningKey
     key.verify_key.should be_a Ed25519::VerifyKey
   end
