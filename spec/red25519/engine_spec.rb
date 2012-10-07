@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ed25519::Engine do
-  let(:seed_length) { Ed25519::SECRET_KEY_BYTES / 2 }
+  let(:seed_length) { Ed25519::SECRET_KEY_BYTES }
   let(:message)     { 'foobar' }
 
   it "generates keypairs" do
@@ -14,7 +14,7 @@ describe Ed25519::Engine do
     pubkey.length.should eq Ed25519::PUBLIC_KEY_BYTES
 
     privkey.should be_a String
-    privkey.length.should eq Ed25519::SECRET_KEY_BYTES
+    privkey.length.should eq Ed25519::SECRET_KEY_BYTES * 2
   end
 
   it "raises ArgumentError if the seed is not #{Ed25519::SECRET_KEY_BYTES / 2} bytes long" do

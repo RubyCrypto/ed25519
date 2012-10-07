@@ -1,11 +1,14 @@
 require 'securerandom'
+require 'hkdf'
 
 module Ed25519
   class SigningKey
     attr_reader :verify_key
 
     def self.generate
-      new SecureRandom.random_bytes(Ed25519::SECRET_KEY_BYTES / 2)
+      random_bytes = SecureRandom.random_bytes(Ed25519::SECRET_KEY_BYTES)
+      hkdf = HKDF.new(random_bytes)
+      new hkdf.next_bytes(Ed25519::SECRET_KEY_BYTES)
     end
 
     def initialize(seed)

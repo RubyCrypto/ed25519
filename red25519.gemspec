@@ -17,6 +17,8 @@ Gem::Specification.new do |gem|
   
   gem.extensions = "ext/red25519/extconf.rb"
 
+  gem.add_runtime_dependency "hkdf"
+
   gem.add_development_dependency "rake-compiler"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
