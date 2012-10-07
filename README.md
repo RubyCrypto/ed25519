@@ -47,7 +47,65 @@ Or install it yourself as:
 Usage
 -----
 
-TODO: Write usage instructions here
+Require red25519 in your Ruby program:
+
+```ruby
+require 'red25519'
+```
+
+Generate a new random signing key:
+
+```ruby
+signing_key = Ed25519::SigningKey.generate
+```
+
+Sign a message with the signing key:
+
+```ruby
+signature = signing_key.sign(message)
+```
+
+Obtain the verify key for a given signing key:
+
+```ruby
+verify_key = signing_key.verify_key
+```
+
+Check the validity of a signature:
+
+```ruby
+verify_key.verify(signature, message)
+```
+
+The verify method will return `true` or `false` depending on if the signature matches.
+
+### Serializing Keys
+
+Keys can be serialized as 32-byte binary strings as follows:
+
+```ruby
+signature_key_bytes = signing_key.to_bytes
+verify_key_bytes = verify_key.to_bytes
+```
+
+The binary serialization can be passed directly into the constructor for a given key type:
+
+```ruby
+signing_key = Ed25519::SigningKey.new(signature_key_bytes)
+verify_key  = Ed25519::VerifyKey.new(verify_key_bytes)
+```
+
+You can also serialize keys to a hex string instead of a binary string:
+
+```ruby
+signing_key_hex = signing_key.to_hex
+```
+
+The hex representation can also be passed into the constructor:
+
+```ruby
+signing_key = Ed25519::SigningKey.new(signing_key_hex)
+```
 
 Contributing
 ------------
