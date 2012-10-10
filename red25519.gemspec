@@ -16,8 +16,12 @@ Gem::Specification.new do |gem|
   gem.name          = "red25519"
   gem.require_paths = ["lib"]
   gem.version       = Ed25519::VERSION
-  
-  gem.extensions = "ext/red25519/extconf.rb"
+
+  if defined? JRUBY_VERSION
+    gem.platform = "jruby"
+  else
+    gem.extensions = "ext/red25519/extconf.rb"
+  end
 
   gem.add_runtime_dependency "hkdf"
 
