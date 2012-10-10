@@ -3,11 +3,14 @@ Red25519
 [![Build Status](https://secure.travis-ci.org/tarcieri/red25519.png?branch=master)](http://travis-ci.org/tarcieri/red25519)
 
 Red25519 provides a Ruby binding to the Ed25519 public-key signature system
-based on elliptic curves and created by Dan Bernstein et al. An implementation
-in C is taken from the SUPERCOP benchmark suite. Ed25519 provides a 128-bit
-security level, that is to say, all known attacks take at least 2^128
-operations, providing the same security level as AES-128, NIST P-256, and
-RSA-3072.
+based on elliptic curves and created by Dan Bernstein et al. Two
+implementations are provided: a MRI C extension which uses the "ref"
+implementation from the SUPERCOP benchmark suite, and a pure Java version
+which is a direct port of the Python implementation.
+
+Ed25519 provides a 128-bit security level, that is to say, all known attacks
+take at least 2^128 operations, providing the same security level as AES-128,
+NIST P-256, and RSA-3072.
 
 ![Ed25519 Diagram](https://raw.github.com/tarcieri/red25519/master/ed25519.png)
 
@@ -108,6 +111,19 @@ The hex representation can also be passed into the constructor:
 ```ruby
 signing_key = Ed25519::SigningKey.new(signing_key_hex)
 ```
+
+JRuby Notes
+-----------
+
+red25519 provides a pure Java backend, however this backend is much slower
+than the C-based version. While red25519 will function on JRuby, it may be
+too slow to be usable for a given use case. You should benchmark your
+application to determine if it will be fast enough for your purposes.
+
+In the future, red25519 can use an FFI extension to provide better performance
+on JRuby. Alternatively, red25519 can be abandoned for a more comprehensive
+FFI binding to Dan Bernstein's NaCl library, which will soon incorporate
+the SUPERCOP implementation of Ed25519.
 
 Contributing
 ------------
