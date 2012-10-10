@@ -1,6 +1,7 @@
 Red25519
 ========
 [![Build Status](https://secure.travis-ci.org/tarcieri/red25519.png?branch=master)](http://travis-ci.org/tarcieri/red25519)
+[!Ed25519 Diagram](https://raw.github.com/tarcieri/red25519/master/ed25519.png)
 
 Red25519 provides a Ruby binding to the Ed25519 public-key signature system
 based on elliptic curves and created by Dan Bernstein et al. An implementation
