@@ -8,7 +8,9 @@ Gem::Specification.new do |gem|
   gem.summary       = "Red25519 provides both C and Java bindings to the Ed25519 public key signature system"
   gem.homepage      = "https://github.com/tarcieri/red25519"
 
-  gem.files         = `git ls-files`.split($\)
+  gem.files = `git ls-files`.split($\)
+  gem.files << "lib/red25519_engine.jar" if defined? JRUBY_VERSION
+
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "red25519"
