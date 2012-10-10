@@ -17,7 +17,7 @@ describe Ed25519::Engine do
     privkey.length.should eq Ed25519::SECRET_KEY_BYTES * 2
   end
 
-  it "raises ArgumentError if the seed is not #{Ed25519::SECRET_KEY_BYTES / 2} bytes long" do
+  it "raises ArgumentError if the seed is not #{Ed25519::SECRET_KEY_BYTES} bytes long" do
     expect { Ed25519::Engine.create_keypair("A" * (seed_length - 1)) }.to raise_exception ArgumentError
     expect { Ed25519::Engine.create_keypair("A" * (seed_length + 1)) }.to raise_exception ArgumentError
   end

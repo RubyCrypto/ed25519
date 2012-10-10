@@ -1,6 +1,7 @@
 require 'red25519/version'
 require 'red25519_engine'
 require 'red25519/keys'
+require 'red25519/jruby_engine' if defined? JRUBY_VERSION
 
 module Ed25519
   SECRET_KEY_BYTES = 32
