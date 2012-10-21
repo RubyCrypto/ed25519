@@ -54,6 +54,10 @@ module Ed25519
     end
 
     def verify(signature, message)
+      if signature.length != SIGNATURE_BYTES
+        raise ArgumentError, "expected #{SIGNATURE_BYTES} byte signature, got #{signature.length}"
+      end
+
       Ed25519::Engine.verify(@key, signature, message)
     end
 

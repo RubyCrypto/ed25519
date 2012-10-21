@@ -62,7 +62,7 @@ static VALUE Ed25519_Engine_verify(VALUE self, VALUE verify_key, VALUE signature
       rb_raise(rb_eArgError, "public verify keys must be %d bytes", PUBLICKEYBYTES);
 
     if(RSTRING_LEN(signature) != SIGNATUREBYTES)
-      rb_raise(rb_eArgError, "public verify keys must be %d bytes", PUBLICKEYBYTES);
+      rb_raise(rb_eArgError, "signatures must be %d bytes", SIGNATUREBYTES);
 
     sig_and_msg_len = SIGNATUREBYTES + RSTRING_LEN(msg);
     sig_and_msg = (unsigned char *)xmalloc(sig_and_msg_len);
