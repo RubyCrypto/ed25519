@@ -112,6 +112,21 @@ The hex representation can also be passed into the constructor:
 signing_key = Ed25519::SigningKey.new(signing_key_hex)
 ```
 
+Security Notes
+--------------
+
+The Ed25519 "ref" implementation from SUPERCOP was lovingly crafted by expert
+security boffins with great care taken to prevent timing attacks. The same
+cannot be said for the C code used in the red25519 C extension or in the
+entirety of the provided Java implementation.
+
+Care should be taken to avoid leaking to the attacker how long it takes to
+generate keys or sign messages (at least until red25519 itself can be audited
+by an expert who can fix any potential timing vulnerabilities)
+
+red25519 relies on a strong SecureRandom for key generation. Weaknesses in the
+random number source can potentially result in insecure keys.
+
 JRuby Notes
 -----------
 
