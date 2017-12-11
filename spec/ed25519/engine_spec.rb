@@ -1,20 +1,22 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
-describe Ed25519::Engine do
+require "spec_helper"
+
+RSpec.describe Ed25519::Engine do
   let(:seed_length) { Ed25519::SECRET_KEY_BYTES }
-  let(:message)     { 'foobar' }
+  let(:message)     { "foobar" }
 
   it "generates keypairs" do
     ary = Ed25519::Engine.create_keypair("A" * seed_length)
 
-    ary.length.should eq 2
+    expect(ary.length).to eq 2
     pubkey, privkey = ary
 
-    pubkey.should be_a String
-    pubkey.length.should eq Ed25519::PUBLIC_KEY_BYTES
+    expect(pubkey).to be_a String
+    expect(pubkey.length).to eq Ed25519::PUBLIC_KEY_BYTES
 
-    privkey.should be_a String
-    privkey.length.should eq Ed25519::SECRET_KEY_BYTES * 2
+    expect(privkey).to be_a String
+    expect(privkey.length).to eq Ed25519::SECRET_KEY_BYTES * 2
   end
 
   it "raises ArgumentError if the seed is not #{Ed25519::SECRET_KEY_BYTES} bytes long" do
@@ -25,9 +27,9 @@ describe Ed25519::Engine do
   it "signs and verifies messages" do
     verify_key, signing_key = Ed25519::Engine.create_keypair("A" * seed_length)
     signature = Ed25519::Engine.sign(signing_key, message)
-    Ed25519::Engine.verify(verify_key, signature, message).should be_true
+    expect(Ed25519::Engine.verify(verify_key, signature, message)).to be_truthy
 
     bad_signature = signature[0...63] + "X"
-    Ed25519::Engine.verify(verify_key, bad_signature, message).should be_false
+    expect(Ed25519::Engine.verify(verify_key, bad_signature, message)).to be_falsey
   end
 end

@@ -1,6 +1,12 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in red25519.gemspec
+source "https://rubygems.org"
+
 gemspec
 
-gem 'jruby-openssl', :platform => :jruby
+group :development, :test do
+  gem "rake", require: false
+  gem "rake-compiler", "~> 1.0", require: false
+  gem "rspec", "~> 3.7", require: false
+  gem "rubocop", "0.51.0", require: false
+end

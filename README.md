@@ -1,21 +1,31 @@
-Red25519
-========
-[![Build Status](https://secure.travis-ci.org/tarcieri/red25519.png?branch=master)](http://travis-ci.org/tarcieri/red25519)
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Build Status][build-image]][build-link] [![License: LGPL v3][license-image]][license-link]
 
-**NOTE**: red25519 is defunct. Please use [RbNaCl](https://github.com/cryptosphere/rbnacl)
-instead.
+[gem-shield]: https://badge.fury.io/rb/ed25519.svg
+[gem-link]: https://rubygems.org/gems/ed25519
+[build-image]: https://travis-ci.org/cryptosphere/ed25519.svg?branch=master
+[build-link]: https://travis-ci.org/cryptosphere/ed25519
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg
+[license-link]: https://github.com/cryptosphere/ed25519/blob/master/LICENSE
 
-Red25519 provides a Ruby binding to the Ed25519 public-key signature system
-based on elliptic curves and created by Dan Bernstein et al. Two
-implementations are provided: a MRI C extension which uses the "ref"
+A Ruby binding to the Ed25519 elliptic curve public-key signature system
+described in [RFC 8032].
+
+Two implementations are provided: a MRI C extension which uses the "ref"
 implementation from the SUPERCOP benchmark suite, and a pure Java version
 which is a direct port of the Python implementation.
+
+[RFC 8032]: https://tools.ietf.org/html/rfc8032
+
+## What is Ed25519?
+
+Ed25519 is a modern implementation of a [Schnorr signature] system using
+elliptic curve groups.
 
 Ed25519 provides a 128-bit security level, that is to say, all known attacks
 take at least 2^128 operations, providing the same security level as AES-128,
 NIST P-256, and RSA-3072.
 
-![Ed25519 Diagram](https://raw.github.com/tarcieri/red25519/master/ed25519.png)
+![Ed25519 Diagram](https://raw.github.com/cryptosphere/ed25519/master/ed25519.png)
 
 Ed25519 has a number of unique properties that make it one of the best-in-class
 digital signature algorithms:
@@ -37,12 +47,13 @@ digital signature algorithms:
 
 You can read more on [Dan Bernstein's Ed25519 site](http://ed25519.cr.yp.to/).
 
-Installation
-------------
+[Schnorr signature]: https://en.wikipedia.org/wiki/Schnorr_signature
+
+## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'red25519'
+    gem 'ed25519'
 
 And then execute:
 
@@ -50,15 +61,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install red25519
+    $ gem install ed25519
 
-Usage
------
+# Usage
 
-Require red25519 in your Ruby program:
+Require **ed25519.rb** in your Ruby program:
 
 ```ruby
-require 'red25519'
+require "ed25519"
 ```
 
 Generate a new random signing key:
@@ -103,56 +113,44 @@ signing_key = Ed25519::SigningKey.new(signature_key_bytes)
 verify_key  = Ed25519::VerifyKey.new(verify_key_bytes)
 ```
 
-You can also serialize keys to a hex string instead of a binary string:
-
-```ruby
-signing_key_hex = signing_key.to_hex
-```
-
-The hex representation can also be passed into the constructor:
-
-```ruby
-signing_key = Ed25519::SigningKey.new(signing_key_hex)
-```
-
-Security Notes
---------------
+## Security Notes
 
 The Ed25519 "ref" implementation from SUPERCOP was lovingly crafted by expert
 security boffins with great care taken to prevent timing attacks. The same
-cannot be said for the C code used in the red25519 C extension or in the
+cannot be said for the C code used in the **ed25519.rb** C extension or in the
 entirety of the provided Java implementation.
 
 Care should be taken to avoid leaking to the attacker how long it takes to
-generate keys or sign messages (at least until red25519 itself can be audited
-by an expert who can fix any potential timing vulnerabilities)
+generate keys or sign messages (at least until **ed25519.rb** itself can be audited
+by experts who can fix any potential timing vulnerabilities)
 
-red25519 relies on a strong SecureRandom for key generation. Weaknesses in the
-random number source can potentially result in insecure keys.
+**ed25519.rb** relies on a strong `SecureRandom` for key generation.
+Weaknesses in the random number source can potentially result in insecure keys.
 
-JRuby Notes
------------
+## JRuby Notes
 
-red25519 provides a pure Java backend, however this backend is much slower
-than the C-based version. While red25519 will function on JRuby, it may be
+**ed25519.rb** provides a pure Java backend, however this backend is much slower
+than the C-based version. While **ed25519.rb** will function on JRuby, it may be
 too slow to be usable for a given use case. You should benchmark your
 application to determine if it will be fast enough for your purposes.
 
-In the future, red25519 can use an FFI extension to provide better performance
-on JRuby. Alternatively, red25519 can be abandoned for a more comprehensive
-FFI binding to Dan Bernstein's NaCl library, which will soon incorporate
-the SUPERCOP implementation of Ed25519.
+## Contributing
 
-Contributing
-------------
+Bug reports and pull requests are welcome on GitHub at https://github.com/cryptosphere/ed25519.
+This project is intended to be a safe, welcoming space for collaboration,
+and contributors areexpected to adhere to the [Contributor Covenant](http://contributor-covenant.org)
+code of conduct.
 
-* Fork this repository on github
-* Make your changes and send me a pull request
-* If I like them I'll merge them
-* If I've accepted a patch, feel free to ask for commit access
+## License
 
-License
--------
+Copyright (c) 2012-2017 Tony Arcieri. Distributed under the MIT License. See
+[LICENSE] for further details.
 
-Copyright (c) 2012 Tony Arcieri. Distributed under the MIT License. See
-LICENSE for further details.
+[LICENSE]: https://github.com/cryptosphere/ed25519/blob/master/LICENSE
+
+## Code of Conduct
+
+Everyone interacting in the **ed25519.rb** project’s codebases, issue trackers, chat
+rooms and mailing lists is expected to follow the [code of conduct].
+
+[code of conduct]: https://github.com/cryptosphere/ed25519/blob/master/CODE_OF_CONDUCT.md

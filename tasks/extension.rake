@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 if defined? JRUBY_VERSION
-  require 'rake/javaextensiontask'
-  Rake::JavaExtensionTask.new('red25519_engine') do |ext|
-    ext.ext_dir = 'ext/red25519'
+  require "rake/javaextensiontask"
+  Rake::JavaExtensionTask.new("ed25519_engine") do |ext|
+    ext.ext_dir = "ext/ed25519"
   end
 else
-  require 'rake/extensiontask'
+  require "rake/extensiontask"
 
-  Rake::ExtensionTask.new('red25519_engine') do |ext|
-    ext.ext_dir = 'ext/red25519'
+  Rake::ExtensionTask.new("ed25519_engine") do |ext|
+    ext.ext_dir = "ext/ed25519"
   end
 end
