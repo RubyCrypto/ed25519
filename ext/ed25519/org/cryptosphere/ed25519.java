@@ -1,4 +1,4 @@
-package org.red25519;
+package org.cryptosphere;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;

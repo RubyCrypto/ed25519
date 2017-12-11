@@ -1,9 +1,27 @@
-#!/usr/bin/env rake
+# frozen_string_literal: true
+
 require "bundler/gem_tasks"
+
 require "rake/clean"
+CLEAN.include("**/*.o", "**/*.so", "**/*.bundle", "pkg", "tmp")
 
-Dir[File.expand_path("../tasks/**/*.rake", __FILE__)].each { |task| load task }
+if defined? JRUBY_VERSION
+  require "rake/javaextensiontask"
+  Rake::JavaExtensionTask.new("ed25519_engine") do |ext|
+    ext.ext_dir = "ext/ed25519"
+  end
+else
+  require "rake/extensiontask"
 
-task :default => %w(compile spec)
+  Rake::ExtensionTask.new("ed25519_engine") do |ext|
+    ext.ext_dir = "ext/ed25519"
+  end
+end
 
-CLEAN.include "**/*.o", "**/*.so", "**/*.bundle", "**/*.jar", "pkg", "tmp"
+require "rspec/core/rake_task"
+RSpec::Core::RakeTask.new
+
+require "rubocop/rake_task"
+RuboCop::RakeTask.new
+
+task default: %w[compile spec rubocop]

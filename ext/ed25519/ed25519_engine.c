@@ -8,7 +8,7 @@ static VALUE Ed25519_Engine_create_keypair(VALUE self, VALUE seed);
 static VALUE Ed25519_Engine_sign(VALUE self, VALUE signing_key, VALUE msg);
 static VALUE Ed25519_Engine_verify(VALUE self, VALUE verify_key, VALUE signature, VALUE msg);
 
-void Init_red25519_engine()
+void Init_ed25519_engine()
 {
     mEd25519 = rb_define_module("Ed25519");
     mEd25519_Engine = rb_define_module_under(mEd25519, "Engine");
@@ -29,7 +29,7 @@ static VALUE Ed25519_Engine_create_keypair(VALUE self, VALUE seed)
 
     crypto_sign_publickey(verify_key, signing_key, RSTRING_PTR(seed));
 
-    rb_ary_new3(2,
+    return rb_ary_new3(2,
         rb_str_new(verify_key, PUBLICKEYBYTES),
         rb_str_new(signing_key, SECRETKEYBYTES)
     );
