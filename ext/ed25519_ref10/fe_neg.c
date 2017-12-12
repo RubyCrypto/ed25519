@@ -12,26 +12,26 @@ Postconditions:
 
 void fe_neg(fe h,const fe f)
 {
-  crypto_int32 f0 = f[0];
-  crypto_int32 f1 = f[1];
-  crypto_int32 f2 = f[2];
-  crypto_int32 f3 = f[3];
-  crypto_int32 f4 = f[4];
-  crypto_int32 f5 = f[5];
-  crypto_int32 f6 = f[6];
-  crypto_int32 f7 = f[7];
-  crypto_int32 f8 = f[8];
-  crypto_int32 f9 = f[9];
-  crypto_int32 h0 = -f0;
-  crypto_int32 h1 = -f1;
-  crypto_int32 h2 = -f2;
-  crypto_int32 h3 = -f3;
-  crypto_int32 h4 = -f4;
-  crypto_int32 h5 = -f5;
-  crypto_int32 h6 = -f6;
-  crypto_int32 h7 = -f7;
-  crypto_int32 h8 = -f8;
-  crypto_int32 h9 = -f9;
+  int32_t f0 = f[0];
+  int32_t f1 = f[1];
+  int32_t f2 = f[2];
+  int32_t f3 = f[3];
+  int32_t f4 = f[4];
+  int32_t f5 = f[5];
+  int32_t f6 = f[6];
+  int32_t f7 = f[7];
+  int32_t f8 = f[8];
+  int32_t f9 = f[9];
+  int32_t h0 = -f0;
+  int32_t h1 = -f1;
+  int32_t h2 = -f2;
+  int32_t h3 = -f3;
+  int32_t h4 = -f4;
+  int32_t h5 = -f5;
+  int32_t h6 = -f6;
+  int32_t h7 = -f7;
+  int32_t h8 = -f8;
+  int32_t h9 = -f9;
   h[0] = h0;
   h[1] = h1;
   h[2] = h2;

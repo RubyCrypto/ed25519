@@ -1,22 +1,89 @@
-//#include "crypto_hashblocks.h"
+/*
+20080913
+D. J. Bernstein
+Public domain.
+*/
 
-typedef unsigned long long uint64;
+#include "sha512.h"
 
-static uint64 load_bigendian(const unsigned char *x)
+static void crypto_hashblocks_sha512(uint8_t *statebytes,const uint8_t *in,uint64_t inlen);
+
+#define blocks crypto_hashblocks_sha512
+
+static const uint8_t iv[64] = {
+  0x6a,0x09,0xe6,0x67,0xf3,0xbc,0xc9,0x08,
+  0xbb,0x67,0xae,0x85,0x84,0xca,0xa7,0x3b,
+  0x3c,0x6e,0xf3,0x72,0xfe,0x94,0xf8,0x2b,
+  0xa5,0x4f,0xf5,0x3a,0x5f,0x1d,0x36,0xf1,
+  0x51,0x0e,0x52,0x7f,0xad,0xe6,0x82,0xd1,
+  0x9b,0x05,0x68,0x8c,0x2b,0x3e,0x6c,0x1f,
+  0x1f,0x83,0xd9,0xab,0xfb,0x41,0xbd,0x6b,
+  0x5b,0xe0,0xcd,0x19,0x13,0x7e,0x21,0x79
+};
+
+int crypto_hash_sha512(uint8_t *out,const uint8_t *in,uint64_t inlen)
+{
+  uint8_t h[64];
+  uint8_t padded[256];
+  uint64_t i;
+  uint64_t bytes = inlen;
+
+  for (i = 0;i < 64;++i) h[i] = iv[i];
+
+  blocks(h,in,inlen);
+  in += inlen;
+  inlen &= 127;
+  in -= inlen;
+
+  for (i = 0;i < inlen;++i) padded[i] = in[i];
+  padded[inlen] = 0x80;
+
+  if (inlen < 112) {
+    for (i = inlen + 1;i < 119;++i) padded[i] = 0;
+    padded[119] = bytes >> 61;
+    padded[120] = bytes >> 53;
+    padded[121] = bytes >> 45;
+    padded[122] = bytes >> 37;
+    padded[123] = bytes >> 29;
+    padded[124] = bytes >> 21;
+    padded[125] = bytes >> 13;
+    padded[126] = bytes >> 5;
+    padded[127] = bytes << 3;
+    blocks(h,padded,128);
+  } else {
+    for (i = inlen + 1;i < 247;++i) padded[i] = 0;
+    padded[247] = bytes >> 61;
+    padded[248] = bytes >> 53;
+    padded[249] = bytes >> 45;
+    padded[250] = bytes >> 37;
+    padded[251] = bytes >> 29;
+    padded[252] = bytes >> 21;
+    padded[253] = bytes >> 13;
+    padded[254] = bytes >> 5;
+    padded[255] = bytes << 3;
+    blocks(h,padded,256);
+  }
+
+  for (i = 0;i < 64;++i) out[i] = h[i];
+
+  return 0;
+}
+
+static uint64_t load_bigendian(const unsigned char *x)
 {
   return
-      (uint64) (x[7]) \
-  | (((uint64) (x[6])) << 8) \
-  | (((uint64) (x[5])) << 16) \
-  | (((uint64) (x[4])) << 24) \
-  | (((uint64) (x[3])) << 32) \
-  | (((uint64) (x[2])) << 40) \
-  | (((uint64) (x[1])) << 48) \
-  | (((uint64) (x[0])) << 56)
+      (uint64_t) (x[7]) \
+  | (((uint64_t) (x[6])) << 8) \
+  | (((uint64_t) (x[5])) << 16) \
+  | (((uint64_t) (x[4])) << 24) \
+  | (((uint64_t) (x[3])) << 32) \
+  | (((uint64_t) (x[2])) << 40) \
+  | (((uint64_t) (x[1])) << 48) \
+  | (((uint64_t) (x[0])) << 56)
   ;
 }
 
-static void store_bigendian(unsigned char *x,uint64 u)
+static void store_bigendian(unsigned char *x,uint64_t u)
 {
   x[7] = u; u >>= 8;
   x[6] = u; u >>= 8;
@@ -70,19 +137,19 @@ static void store_bigendian(unsigned char *x,uint64 u)
   b = a; \
   a = T1 + T2;
 
-int crypto_hashblocks(unsigned char *statebytes,const unsigned char *in,unsigned long long inlen)
+static void crypto_hashblocks_sha512(uint8_t *statebytes,const uint8_t *in,uint64_t inlen)
 {
-  uint64 state[8];
-  uint64 a;
-  uint64 b;
-  uint64 c;
-  uint64 d;
-  uint64 e;
-  uint64 f;
-  uint64 g;
-  uint64 h;
-  uint64 T1;
-  uint64 T2;
+  uint64_t state[8];
+  uint64_t a;
+  uint64_t b;
+  uint64_t c;
+  uint64_t d;
+  uint64_t e;
+  uint64_t f;
+  uint64_t g;
+  uint64_t h;
+  uint64_t T1;
+  uint64_t T2;
 
   a = load_bigendian(statebytes +  0); state[0] = a;
   b = load_bigendian(statebytes +  8); state[1] = b;
@@ -94,22 +161,22 @@ int crypto_hashblocks(unsigned char *statebytes,const unsigned char *in,unsigned
   h = load_bigendian(statebytes + 56); state[7] = h;
 
   while (inlen >= 128) {
-    uint64 w0  = load_bigendian(in +   0);
-    uint64 w1  = load_bigendian(in +   8);
-    uint64 w2  = load_bigendian(in +  16);
-    uint64 w3  = load_bigendian(in +  24);
-    uint64 w4  = load_bigendian(in +  32);
-    uint64 w5  = load_bigendian(in +  40);
-    uint64 w6  = load_bigendian(in +  48);
-    uint64 w7  = load_bigendian(in +  56);
-    uint64 w8  = load_bigendian(in +  64);
-    uint64 w9  = load_bigendian(in +  72);
-    uint64 w10 = load_bigendian(in +  80);
-    uint64 w11 = load_bigendian(in +  88);
-    uint64 w12 = load_bigendian(in +  96);
-    uint64 w13 = load_bigendian(in + 104);
-    uint64 w14 = load_bigendian(in + 112);
-    uint64 w15 = load_bigendian(in + 120);
+    uint64_t w0  = load_bigendian(in +   0);
+    uint64_t w1  = load_bigendian(in +   8);
+    uint64_t w2  = load_bigendian(in +  16);
+    uint64_t w3  = load_bigendian(in +  24);
+    uint64_t w4  = load_bigendian(in +  32);
+    uint64_t w5  = load_bigendian(in +  40);
+    uint64_t w6  = load_bigendian(in +  48);
+    uint64_t w7  = load_bigendian(in +  56);
+    uint64_t w8  = load_bigendian(in +  64);
+    uint64_t w9  = load_bigendian(in +  72);
+    uint64_t w10 = load_bigendian(in +  80);
+    uint64_t w11 = load_bigendian(in +  88);
+    uint64_t w12 = load_bigendian(in +  96);
+    uint64_t w13 = load_bigendian(in + 104);
+    uint64_t w14 = load_bigendian(in + 112);
+    uint64_t w15 = load_bigendian(in + 120);
 
     F(w0 ,0x428a2f98d728ae22ULL)
     F(w1 ,0x7137449123ef65cdULL)
@@ -212,7 +279,7 @@ int crypto_hashblocks(unsigned char *statebytes,const unsigned char *in,unsigned
     f += state[5];
     g += state[6];
     h += state[7];
-  
+
     state[0] = a;
     state[1] = b;
     state[2] = c;
@@ -234,6 +301,4 @@ int crypto_hashblocks(unsigned char *statebytes,const unsigned char *in,unsigned
   store_bigendian(statebytes + 40,state[5]);
   store_bigendian(statebytes + 48,state[6]);
   store_bigendian(statebytes + 56,state[7]);
-
-  return inlen;
 }

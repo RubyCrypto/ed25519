@@ -24,7 +24,7 @@ module Ed25519
         raise ArgumentError, "expected #{SIGNATURE_SIZE} byte signature, got #{signature.length}"
       end
 
-      return true if Ed25519::Engine.verify(@key_bytes, signature, message)
+      return true if Ed25519.provider.verify(@key_bytes, signature, message)
       raise VerifyError, "signature verification failed!"
     end
 

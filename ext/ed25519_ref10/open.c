@@ -1,14 +1,13 @@
 #include <string.h>
-#include "crypto_sign.h"
-#include "crypto_hash_sha512.h"
-#include "crypto_verify_32.h"
+#include "sha512.h"
+#include "ed25519_ref10.h"
 #include "ge.h"
 #include "sc.h"
 
-int crypto_sign_open(
-  unsigned char *m,unsigned long long *mlen,
-  const unsigned char *sm,unsigned long long smlen,
-  const unsigned char *pk
+int crypto_sign_open_ed25519_ref10(
+  uint8_t *m, uint64_t *mlen,
+  const uint8_t *sm, uint64_t smlen,
+  const uint8_t *pk
 )
 {
   unsigned char pkcopy[32];

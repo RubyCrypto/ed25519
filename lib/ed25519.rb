@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "ed25519/version"
-require "ed25519_engine"
-require "ed25519/jruby_engine" if defined? JRUBY_VERSION
 require "ed25519/signing_key"
 require "ed25519/verify_key"
 
@@ -22,6 +20,20 @@ module Ed25519
 
   # Raised when the built-in self-test fails
   SelfTestFailure = Class.new(StandardError)
+
+  # Select the Ed25519::Provider to use based on the current environment
+  if defined? JRUBY_VERSION
+    require "ed25519/provider/jruby"
+    @provider = Ed25519::Provider::JRuby
+  else
+    require "ed25519_ref10"
+    @provider = Ed25519::Provider::Ref10
+  end
+
+  # Selected provider based on the logic above
+  def provider
+    @provider
+  end
 
   # Perform a self-test to ensure the selected provider is working
   def self_test

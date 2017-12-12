@@ -2,6 +2,7 @@
 
 require "bundler/setup"
 require "ed25519"
+require "support/provider_examples"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

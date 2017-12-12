@@ -27,29 +27,29 @@ Proof:
 
 void fe_tobytes(unsigned char *s,const fe h)
 {
-  crypto_int32 h0 = h[0];
-  crypto_int32 h1 = h[1];
-  crypto_int32 h2 = h[2];
-  crypto_int32 h3 = h[3];
-  crypto_int32 h4 = h[4];
-  crypto_int32 h5 = h[5];
-  crypto_int32 h6 = h[6];
-  crypto_int32 h7 = h[7];
-  crypto_int32 h8 = h[8];
-  crypto_int32 h9 = h[9];
-  crypto_int32 q;
-  crypto_int32 carry0;
-  crypto_int32 carry1;
-  crypto_int32 carry2;
-  crypto_int32 carry3;
-  crypto_int32 carry4;
-  crypto_int32 carry5;
-  crypto_int32 carry6;
-  crypto_int32 carry7;
-  crypto_int32 carry8;
-  crypto_int32 carry9;
+  int32_t h0 = h[0];
+  int32_t h1 = h[1];
+  int32_t h2 = h[2];
+  int32_t h3 = h[3];
+  int32_t h4 = h[4];
+  int32_t h5 = h[5];
+  int32_t h6 = h[6];
+  int32_t h7 = h[7];
+  int32_t h8 = h[8];
+  int32_t h9 = h[9];
+  int32_t q;
+  int32_t carry0;
+  int32_t carry1;
+  int32_t carry2;
+  int32_t carry3;
+  int32_t carry4;
+  int32_t carry5;
+  int32_t carry6;
+  int32_t carry7;
+  int32_t carry8;
+  int32_t carry9;
 
-  q = (19 * h9 + (((crypto_int32) 1) << 24)) >> 25;
+  q = (19 * h9 + (((int32_t) 1) << 24)) >> 25;
   q = (h0 + q) >> 26;
   q = (h1 + q) >> 25;
   q = (h2 + q) >> 26;

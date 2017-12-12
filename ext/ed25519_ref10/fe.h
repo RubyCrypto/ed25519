@@ -1,9 +1,9 @@
 #ifndef FE_H
 #define FE_H
 
-#include "crypto_int32.h"
+#include "ed25519_ref10.h"
 
-typedef crypto_int32 fe[10];
+typedef int32_t fe[10];
 
 /*
 fe means field element.

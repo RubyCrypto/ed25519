@@ -1,6 +1,6 @@
-#include "crypto_verify_32.h"
+#include "ed25519_ref10.h"
 
-int crypto_verify_32(const unsigned char *x,const unsigned char *y)
+int crypto_verify_32(const uint8_t *x,const uint8_t *y)
 {
   unsigned int differentbits = 0;
 #define F(i) differentbits |= x[i] ^ y[i];

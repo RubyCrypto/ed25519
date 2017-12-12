@@ -1,24 +1,21 @@
 #include "sc.h"
-#include "crypto_int64.h"
-#include "crypto_uint32.h"
-#include "crypto_uint64.h"
 
-static crypto_uint64 load_3(const unsigned char *in)
+static uint64_t load_3(const unsigned char *in)
 {
-  crypto_uint64 result;
-  result = (crypto_uint64) in[0];
-  result |= ((crypto_uint64) in[1]) << 8;
-  result |= ((crypto_uint64) in[2]) << 16;
+  uint64_t result;
+  result = (uint64_t) in[0];
+  result |= ((uint64_t) in[1]) << 8;
+  result |= ((uint64_t) in[2]) << 16;
   return result;
 }
 
-static crypto_uint64 load_4(const unsigned char *in)
+static uint64_t load_4(const unsigned char *in)
 {
-  crypto_uint64 result;
-  result = (crypto_uint64) in[0];
-  result |= ((crypto_uint64) in[1]) << 8;
-  result |= ((crypto_uint64) in[2]) << 16;
-  result |= ((crypto_uint64) in[3]) << 24;
+  uint64_t result;
+  result = (uint64_t) in[0];
+  result |= ((uint64_t) in[1]) << 8;
+  result |= ((uint64_t) in[2]) << 16;
+  result |= ((uint64_t) in[3]) << 24;
   return result;
 }
 
@@ -32,49 +29,49 @@ Output:
   Overwrites s in place.
 */
 
-void sc_reduce(unsigned char *s)
+void sc_reduce(uint8_t *s)
 {
-  crypto_int64 s0 = 2097151 & load_3(s);
-  crypto_int64 s1 = 2097151 & (load_4(s + 2) >> 5);
-  crypto_int64 s2 = 2097151 & (load_3(s + 5) >> 2);
-  crypto_int64 s3 = 2097151 & (load_4(s + 7) >> 7);
-  crypto_int64 s4 = 2097151 & (load_4(s + 10) >> 4);
-  crypto_int64 s5 = 2097151 & (load_3(s + 13) >> 1);
-  crypto_int64 s6 = 2097151 & (load_4(s + 15) >> 6);
-  crypto_int64 s7 = 2097151 & (load_3(s + 18) >> 3);
-  crypto_int64 s8 = 2097151 & load_3(s + 21);
-  crypto_int64 s9 = 2097151 & (load_4(s + 23) >> 5);
-  crypto_int64 s10 = 2097151 & (load_3(s + 26) >> 2);
-  crypto_int64 s11 = 2097151 & (load_4(s + 28) >> 7);
-  crypto_int64 s12 = 2097151 & (load_4(s + 31) >> 4);
-  crypto_int64 s13 = 2097151 & (load_3(s + 34) >> 1);
-  crypto_int64 s14 = 2097151 & (load_4(s + 36) >> 6);
-  crypto_int64 s15 = 2097151 & (load_3(s + 39) >> 3);
-  crypto_int64 s16 = 2097151 & load_3(s + 42);
-  crypto_int64 s17 = 2097151 & (load_4(s + 44) >> 5);
-  crypto_int64 s18 = 2097151 & (load_3(s + 47) >> 2);
-  crypto_int64 s19 = 2097151 & (load_4(s + 49) >> 7);
-  crypto_int64 s20 = 2097151 & (load_4(s + 52) >> 4);
-  crypto_int64 s21 = 2097151 & (load_3(s + 55) >> 1);
-  crypto_int64 s22 = 2097151 & (load_4(s + 57) >> 6);
-  crypto_int64 s23 = (load_4(s + 60) >> 3);
-  crypto_int64 carry0;
-  crypto_int64 carry1;
-  crypto_int64 carry2;
-  crypto_int64 carry3;
-  crypto_int64 carry4;
-  crypto_int64 carry5;
-  crypto_int64 carry6;
-  crypto_int64 carry7;
-  crypto_int64 carry8;
-  crypto_int64 carry9;
-  crypto_int64 carry10;
-  crypto_int64 carry11;
-  crypto_int64 carry12;
-  crypto_int64 carry13;
-  crypto_int64 carry14;
-  crypto_int64 carry15;
-  crypto_int64 carry16;
+  int64_t s0 = 2097151 & load_3(s);
+  int64_t s1 = 2097151 & (load_4(s + 2) >> 5);
+  int64_t s2 = 2097151 & (load_3(s + 5) >> 2);
+  int64_t s3 = 2097151 & (load_4(s + 7) >> 7);
+  int64_t s4 = 2097151 & (load_4(s + 10) >> 4);
+  int64_t s5 = 2097151 & (load_3(s + 13) >> 1);
+  int64_t s6 = 2097151 & (load_4(s + 15) >> 6);
+  int64_t s7 = 2097151 & (load_3(s + 18) >> 3);
+  int64_t s8 = 2097151 & load_3(s + 21);
+  int64_t s9 = 2097151 & (load_4(s + 23) >> 5);
+  int64_t s10 = 2097151 & (load_3(s + 26) >> 2);
+  int64_t s11 = 2097151 & (load_4(s + 28) >> 7);
+  int64_t s12 = 2097151 & (load_4(s + 31) >> 4);
+  int64_t s13 = 2097151 & (load_3(s + 34) >> 1);
+  int64_t s14 = 2097151 & (load_4(s + 36) >> 6);
+  int64_t s15 = 2097151 & (load_3(s + 39) >> 3);
+  int64_t s16 = 2097151 & load_3(s + 42);
+  int64_t s17 = 2097151 & (load_4(s + 44) >> 5);
+  int64_t s18 = 2097151 & (load_3(s + 47) >> 2);
+  int64_t s19 = 2097151 & (load_4(s + 49) >> 7);
+  int64_t s20 = 2097151 & (load_4(s + 52) >> 4);
+  int64_t s21 = 2097151 & (load_3(s + 55) >> 1);
+  int64_t s22 = 2097151 & (load_4(s + 57) >> 6);
+  int64_t s23 = (load_4(s + 60) >> 3);
+  int64_t carry0;
+  int64_t carry1;
+  int64_t carry2;
+  int64_t carry3;
+  int64_t carry4;
+  int64_t carry5;
+  int64_t carry6;
+  int64_t carry7;
+  int64_t carry8;
+  int64_t carry9;
+  int64_t carry10;
+  int64_t carry11;
+  int64_t carry12;
+  int64_t carry13;
+  int64_t carry14;
+  int64_t carry15;
+  int64_t carry16;
 
   s11 += s23 * 666643;
   s12 += s23 * 470296;

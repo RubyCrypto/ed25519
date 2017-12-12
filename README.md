@@ -12,7 +12,7 @@
 A Ruby binding to the Ed25519 elliptic curve public-key signature system
 described in [RFC 8032].
 
-Two implementations are provided: a MRI C extension which uses the "ref"
+Two implementations are provided: a MRI C extension which uses the "ref10"
 implementation from the SUPERCOP benchmark suite, and a pure Java version
 which is a direct port of the Python implementation.
 
