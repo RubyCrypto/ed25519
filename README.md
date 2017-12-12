@@ -1,9 +1,11 @@
-# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Build Status][build-image]][build-link] [![License: LGPL v3][license-image]][license-link]
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Build Status][build-image]][build-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link]
 
 [gem-shield]: https://badge.fury.io/rb/ed25519.svg
 [gem-link]: https://rubygems.org/gems/ed25519
 [build-image]: https://travis-ci.org/cryptosphere/ed25519.svg?branch=master
 [build-link]: https://travis-ci.org/cryptosphere/ed25519
+[docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
+[docs-link]: http://www.rubydoc.info/gems/ed25519
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/cryptosphere/ed25519/blob/master/LICENSE
 
@@ -95,7 +97,8 @@ Check the validity of a signature:
 verify_key.verify(signature, message)
 ```
 
-The verify method will return `true` or `false` depending on if the signature matches.
+The verify method will return `true` if the signature verifies, or raise
+`Ed25519::VerifyError` if verification fails.
 
 ### Serializing Keys
 
