@@ -18,6 +18,6 @@ RSpec.describe Ed25519::SigningKey do
   it "serializes to bytes" do
     bytes = key.to_bytes
     expect(bytes).to be_a String
-    expect(bytes.length).to eq 32
+    expect(bytes.length).to eq Ed25519::KEY_SIZE
   end
 end

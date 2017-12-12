@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Ed25519::Engine do
-  let(:seed_length) { Ed25519::SECRET_KEY_BYTES }
+  let(:seed_length) { Ed25519::KEY_SIZE }
   let(:message)     { "foobar" }
 
   it "generates keypairs" do
@@ -13,13 +13,13 @@ RSpec.describe Ed25519::Engine do
     pubkey, privkey = ary
 
     expect(pubkey).to be_a String
-    expect(pubkey.length).to eq Ed25519::PUBLIC_KEY_BYTES
+    expect(pubkey.length).to eq Ed25519::KEY_SIZE
 
     expect(privkey).to be_a String
-    expect(privkey.length).to eq Ed25519::SECRET_KEY_BYTES * 2
+    expect(privkey.length).to eq Ed25519::KEY_SIZE * 2
   end
 
-  it "raises ArgumentError if the seed is not #{Ed25519::SECRET_KEY_BYTES} bytes long" do
+  it "raises ArgumentError if the seed is not #{Ed25519::KEY_SIZE} bytes long" do
     expect { Ed25519::Engine.create_keypair("A" * (seed_length - 1)) }.to raise_exception ArgumentError
     expect { Ed25519::Engine.create_keypair("A" * (seed_length + 1)) }.to raise_exception ArgumentError
   end
