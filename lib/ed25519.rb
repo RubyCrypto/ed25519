@@ -9,13 +9,22 @@ require "ed25519/verify_key"
 # The Ed25519 digital signatre algorithm
 # rubocop:disable Metrics/LineLength
 module Ed25519
-  SECRET_KEY_BYTES = 32
-  PUBLIC_KEY_BYTES = 32
-  SIGNATURE_BYTES  = 64
+  module_function
 
-  class SelfTestFailure < StandardError; end
+  # Size of an Ed25519 key (public or private) in bytes
+  KEY_SIZE = 32
 
-  def self.test
+  # Size of an Ed25519 signature in bytes
+  SIGNATURE_SIZE = 64
+
+  # Raised when a signature fails to verify
+  VerifyError = Class.new(StandardError)
+
+  # Raised when the built-in self-test fails
+  SelfTestFailure = Class.new(StandardError)
+
+  # Perform a self-test to ensure the selected provider is working
+  def self_test
     signature_key = Ed25519::SigningKey.new("A" * 32)
     raise SelfTestFailure, "failed to generate verify key correctly" unless signature_key.verify_key.to_bytes.unpack("H*").first == "db995fe25169d141cab9bbba92baa01f9f2e1ece7df4cb2ac05190f37fcc1f9d"
 
@@ -27,8 +36,18 @@ module Ed25519
     raise SelfTestFailure, "failed to verify a valid signature" unless verify_key.verify(signature, message)
 
     bad_signature = signature[0...63] + "X"
-    raise SelfTestFailure, "failed to detect an invalid signature" unless verify_key.verify(bad_signature, message) == false
+    ex = nil
+
+    # rubocop:disable Lint/HandleExceptions
+    begin
+      verify_key.verify(bad_signature, message)
+    rescue Ed25519::VerifyError => ex
+    end
+    # rubocop:enable Lint/HandleExceptions
+
+    raise SelfTestFailure, "failed to detect an invalid signature" unless ex.is_a?(Ed25519::VerifyError)
   end
 end
 
-Ed25519.test
+# Automatically run self-test when library loads
+Ed25519.self_test

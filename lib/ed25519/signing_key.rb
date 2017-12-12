@@ -7,12 +7,16 @@ module Ed25519
   class SigningKey
     attr_reader :verify_key
 
+    # Generate a random Ed25519 signing key (i.e. private scalar)
     def self.generate
-      new SecureRandom.random_bytes(Ed25519::SECRET_KEY_BYTES)
+      new SecureRandom.random_bytes(Ed25519::KEY_SIZE)
     end
 
+    # Create a new Ed25519::SigningKey from the given seed value
+    #
+    # @param seed [String] 32-byte seed value from which the key should be derived
     def initialize(seed)
-      raise ArgumentError, "seed must be 32 bytes long" unless seed.length == SECRET_KEY_BYTES
+      raise ArgumentError, "seed must be #{KEY_SIZE}-bytes long" unless seed.length == KEY_SIZE
       @seed = seed
 
       verify_key, @signing_key = Ed25519::Engine.create_keypair(seed)
