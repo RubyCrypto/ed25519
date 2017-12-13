@@ -2,7 +2,6 @@ package org.ed25519;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -43,7 +42,7 @@ public class Ed25519Provider {
 
 	@JRubyMethod(name = "create_keypair", module = true)
 	public static IRubyObject create_keypair(ThreadContext context, IRubyObject self, IRubyObject seed) {
-		byte[] seed_bytes = seed.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+		byte[] seed_bytes = seed.convertToString().getByteList().bytes();
 
 		if (seed_bytes.length != 32) {
 			throw context.runtime.newArgumentError("expected 32-byte seed value, got " + seed_bytes.length);
@@ -60,7 +59,7 @@ public class Ed25519Provider {
 
 	@JRubyMethod(name = "sign", module = true)
 	public static IRubyObject sign(ThreadContext context, IRubyObject self, IRubyObject keypair, IRubyObject msg) {
-		byte[] keypair_bytes = keypair.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+		byte[] keypair_bytes = keypair.convertToString().getByteList().bytes();
 
 		if (keypair_bytes.length != 64) {
 			throw context.runtime.newArgumentError("expected 64-byte keypair value, got " + keypair_bytes.length);
@@ -71,14 +70,14 @@ public class Ed25519Provider {
 		System.arraycopy(keypair_bytes, 0, signing_key, 0, 32);
 		System.arraycopy(keypair_bytes, 32, verify_key, 0, 32);
 
-		byte[] sig = signature(msg.asJavaString().getBytes(StandardCharsets.ISO_8859_1), signing_key, verify_key);
+		byte[] sig = signature(msg.convertToString().getByteList().bytes(), signing_key, verify_key);
 		return RubyString.newString(context.getRuntime(), sig);
 	}
 
 	@JRubyMethod(name = "verify", module = true)
 	public static IRubyObject verify(ThreadContext context, IRubyObject self, IRubyObject verify_key, IRubyObject signature, IRubyObject msg) {
-		byte[] verify_key_bytes = verify_key.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
-		byte[] signature_bytes = signature.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+		byte[] verify_key_bytes = verify_key.convertToString().getByteList().bytes();
+		byte[] signature_bytes = signature.convertToString().getByteList().bytes();
 
 		if (verify_key_bytes.length != 32) {
 			throw context.runtime.newArgumentError("expected 32-byte verify key, got " + verify_key_bytes.length);
@@ -91,7 +90,7 @@ public class Ed25519Provider {
 		try {
 			boolean is_valid = checkvalid(
 				signature_bytes,
-				msg.asJavaString().getBytes(StandardCharsets.ISO_8859_1),
+				msg.convertToString().getByteList().bytes(),
 				verify_key_bytes
 			);
 			return context.runtime.newBoolean(is_valid);
