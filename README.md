@@ -14,7 +14,7 @@ described in [RFC 8032].
 
 Two implementations are provided: a MRI C extension which uses the "ref10"
 implementation from the SUPERCOP benchmark suite, and a pure Java version
-which is a direct port of the Python implementation.
+based on [str4d/ed25519-java].
 
 Ed25519 is one of two notable algorithms implemented atop the Curve25519
 elliptic curve. The [x25519 gem] is a related project of this one,
@@ -22,6 +22,7 @@ and implements the X25519 Diffie-Hellman key exchange algorithm on the
 Montgomery form of Curve25519.
 
 [RFC 8032]: https://tools.ietf.org/html/rfc8032
+[str4d/ed25519-java]: https://github.com/str4d/ed25519-java
 [x25519 gem]: https://github.com/cryptosphere/x25519
 
 ## What is Ed25519?
