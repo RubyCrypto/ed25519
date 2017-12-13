@@ -3,12 +3,12 @@
 require "bundler/gem_tasks"
 
 require "rake/clean"
-CLEAN.include("**/*.o", "**/*.so", "**/*.bundle", "pkg", "tmp")
+CLEAN.include("**/*.o", "**/*.so", "**/*.bundle", "*.jar", "pkg", "tmp")
 
 if defined? JRUBY_VERSION
   require "rake/javaextensiontask"
-  Rake::JavaExtensionTask.new("ed25519_java") do |ext|
-    ext.ext_dir = "ext/ed25519_java"
+  Rake::JavaExtensionTask.new("ed25519_jruby") do |ext|
+    ext.ext_dir = "ext/ed25519_jruby"
   end
 else
   require "rake/extensiontask"
