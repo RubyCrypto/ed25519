@@ -10,6 +10,7 @@
 *.o
 *.so
 *.bundle
+*.jar
 
 # rspec failure tracking
 .rspec_status

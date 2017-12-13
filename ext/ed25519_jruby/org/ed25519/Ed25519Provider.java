@@ -1,16 +1,25 @@
-package org.cryptosphere;
+package org.ed25519;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import org.jruby.Ruby;
+import org.jruby.RubyModule;
+import org.jruby.RubyString;
+import org.jruby.anno.JRubyMethod;
+import org.jruby.anno.JRubyModule;
+import org.jruby.runtime.ThreadContext;
+import org.jruby.runtime.builtin.IRubyObject;
 
 /* Written by k3d3
  * Released to the public domain
  */
 
-public class ed25519 {
+@JRubyModule(name="Ed25519::Provider::JRuby")
+public class Ed25519Provider {
 	static final int b = 256;
 	static final BigInteger q = new BigInteger("57896044618658097711785492504343953926634992332820282019728792003956564819949");
 	static final BigInteger qm2 = new BigInteger("57896044618658097711785492504343953926634992332820282019728792003956564819947");
@@ -22,6 +31,77 @@ public class ed25519 {
 	static final BigInteger Bx = new BigInteger("15112221349535400772501151409588531511454012693041857206046113283949847762202");
 	static final BigInteger[] B = {Bx.mod(q),By.mod(q)};
 	static final BigInteger un = new BigInteger("57896044618658097711785492504343953926634992332820282019728792003956564819967");
+
+	public static RubyModule createEd25519Module(Ruby runtime) {
+		RubyModule mEd25519 = runtime.defineModule("Ed25519");
+		RubyModule mEd25519Provider = mEd25519.defineModuleUnder("Provider");
+		RubyModule mEd25519ProviderJRuby = mEd25519Provider.defineOrGetModuleUnder("JRuby");
+		mEd25519ProviderJRuby.defineAnnotatedMethods(Ed25519Provider.class);
+
+		return mEd25519ProviderJRuby;
+	}
+
+	@JRubyMethod(name = "create_keypair", module = true)
+	public static IRubyObject create_keypair(ThreadContext context, IRubyObject self, IRubyObject seed) {
+		byte[] seed_bytes = seed.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+
+		if (seed_bytes.length != 32) {
+			throw context.runtime.newArgumentError("expected 32-byte seed value, got " + seed_bytes.length);
+		}
+
+		byte[] verify_key = publickey(seed_bytes);
+		byte[] keypair = new byte[64];
+
+		System.arraycopy(seed_bytes, 0, keypair, 0, 32);
+		System.arraycopy(verify_key, 0, keypair, 32, 32);
+
+		return RubyString.newString(context.getRuntime(), keypair);
+	}
+
+	@JRubyMethod(name = "sign", module = true)
+	public static IRubyObject sign(ThreadContext context, IRubyObject self, IRubyObject keypair, IRubyObject msg) {
+		byte[] keypair_bytes = keypair.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+
+		if (keypair_bytes.length != 64) {
+			throw context.runtime.newArgumentError("expected 64-byte keypair value, got " + keypair_bytes.length);
+		}
+
+		byte[] signing_key = new byte[32];
+		byte[] verify_key = new byte[32];
+		System.arraycopy(keypair_bytes, 0, signing_key, 0, 32);
+		System.arraycopy(keypair_bytes, 32, verify_key, 0, 32);
+
+		byte[] sig = signature(msg.asJavaString().getBytes(StandardCharsets.ISO_8859_1), signing_key, verify_key);
+		return RubyString.newString(context.getRuntime(), sig);
+	}
+
+	@JRubyMethod(name = "verify", module = true)
+	public static IRubyObject verify(ThreadContext context, IRubyObject self, IRubyObject verify_key, IRubyObject signature, IRubyObject msg) {
+		byte[] verify_key_bytes = verify_key.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+		byte[] signature_bytes = signature.asJavaString().getBytes(StandardCharsets.ISO_8859_1);
+
+		if (verify_key_bytes.length != 32) {
+			throw context.runtime.newArgumentError("expected 32-byte verify key, got " + verify_key_bytes.length);
+		}
+
+		if (signature_bytes.length != 64) {
+			throw context.runtime.newArgumentError("expected 64-byte signature, got " + signature_bytes.length);
+		}
+
+		try {
+			boolean is_valid = checkvalid(
+				signature_bytes,
+				msg.asJavaString().getBytes(StandardCharsets.ISO_8859_1),
+				verify_key_bytes
+			);
+			return context.runtime.newBoolean(is_valid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+
+		return null;
+	}
 
 	static byte[] H(byte[] m) {
 		MessageDigest md;
