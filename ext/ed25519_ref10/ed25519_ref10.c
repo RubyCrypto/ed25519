@@ -23,7 +23,7 @@ void Init_ed25519_ref10()
 static VALUE mEd25519_Provider_Ref10_create_keypair(VALUE self, VALUE seed)
 {
     uint8_t verify_key[PUBLICKEYBYTES];
-    uint8_t signing_key[SECRETKEYBYTES];
+    uint8_t keypair[SECRETKEYBYTES];
 
     StringValue(seed);
 
@@ -31,12 +31,9 @@ static VALUE mEd25519_Provider_Ref10_create_keypair(VALUE self, VALUE seed)
         rb_raise(rb_eArgError, "seed must be exactly %d bytes", SECRETKEYBYTES / 2);
     }
 
-    crypto_sign_ed25519_ref10_seed_keypair(verify_key, signing_key, (uint8_t *)RSTRING_PTR(seed));
+    crypto_sign_ed25519_ref10_seed_keypair(verify_key, keypair, (uint8_t *)RSTRING_PTR(seed));
 
-    return rb_ary_new3(2,
-        rb_str_new((const char *)verify_key, PUBLICKEYBYTES),
-        rb_str_new((const char *)signing_key, SECRETKEYBYTES)
-    );
+    return rb_str_new((const char *)keypair, SECRETKEYBYTES);
 }
 
 static VALUE mEd25519_Provider_Ref10_sign(VALUE self, VALUE signing_key, VALUE msg)
