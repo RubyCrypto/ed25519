@@ -21,18 +21,18 @@ module Ed25519
   # Raised when the built-in self-test fails
   SelfTestFailure = Class.new(StandardError)
 
+  class << self
+    # Obtain the backend provider module used to perform signatures
+    attr_accessor :provider
+  end
+
   # Select the Ed25519::Provider to use based on the current environment
   if defined? JRUBY_VERSION
     require "ed25519/provider/jruby"
-    @provider = Ed25519::Provider::JRuby
+    self.provider = Ed25519::Provider::JRuby
   else
     require "ed25519_ref10"
-    @provider = Ed25519::Provider::Ref10
-  end
-
-  # Selected provider based on the logic above
-  def provider
-    @provider
+    self.provider = Ed25519::Provider::Ref10
   end
 
   # Perform a self-test to ensure the selected provider is working
