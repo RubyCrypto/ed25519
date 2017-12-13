@@ -125,7 +125,7 @@ verify_key  = Ed25519::VerifyKey.new(verify_key_bytes)
 
 ## Security Notes
 
-The Ed25519 "ref" implementation from SUPERCOP was lovingly crafted by expert
+The Ed25519 "ref10" implementation from SUPERCOP was lovingly crafted by expert
 security boffins with great care taken to prevent timing attacks. The same
 cannot be said for the C code used in the **ed25519.rb** C extension or in the
 entirety of the provided Java implementation.
@@ -136,13 +136,6 @@ by experts who can fix any potential timing vulnerabilities)
 
 **ed25519.rb** relies on a strong `SecureRandom` for key generation.
 Weaknesses in the random number source can potentially result in insecure keys.
-
-## JRuby Notes
-
-**ed25519.rb** provides a pure Java backend, however this backend is much slower
-than the C-based version. While **ed25519.rb** will function on JRuby, it may be
-too slow to be usable for a given use case. You should benchmark your
-application to determine if it will be fast enough for your purposes.
 
 ## Contributing
 
