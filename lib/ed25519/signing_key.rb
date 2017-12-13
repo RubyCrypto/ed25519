@@ -23,14 +23,23 @@ module Ed25519
       @verify_key = VerifyKey.new(@keypair[32, 32])
     end
 
+    # Sign the given message, returning an Ed25519 signature
+    #
+    # @param message [String] message to be signed
+    #
+    # @return [String] 64-byte Ed25519 signature
     def sign(message)
       Ed25519.provider.sign(@keypair, message)
     end
 
+    # String inspection that does not leak secret values
     def inspect
       to_s
     end
 
+    # Return a bytestring representation of this signing key
+    #
+    # @return [String] signing key converted to a bytestring
     def to_bytes
       seed
     end
