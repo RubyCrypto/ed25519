@@ -5,7 +5,7 @@ require "securerandom"
 module Ed25519
   # Private key for producing digital signatures
   class SigningKey
-    attr_reader :verify_key
+    attr_reader :seed, :keypair, :verify_key
 
     # Generate a random Ed25519 signing key (i.e. private scalar)
     def self.generate
@@ -19,8 +19,8 @@ module Ed25519
       raise ArgumentError, "seed must be #{KEY_SIZE}-bytes long" unless seed.length == KEY_SIZE
       @seed = seed
 
-      verify_key, @keypair = Ed25519.provider.create_keypair(seed)
-      @verify_key = VerifyKey.new(verify_key)
+      @keypair = Ed25519.provider.create_keypair(seed)
+      @verify_key = VerifyKey.new(@keypair[32, 32])
     end
 
     def sign(message)
@@ -32,7 +32,7 @@ module Ed25519
     end
 
     def to_bytes
-      @seed
+      seed
     end
     alias to_str to_bytes
   end
