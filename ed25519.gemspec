@@ -21,10 +21,10 @@ Gem::Specification.new do |spec|
 
   if defined? JRUBY_VERSION
     spec.platform = "jruby"
-    spec.files << "lib/ed25519_engine.jar"
+    spec.files << "lib/ed25519_java.jar"
   else
-    spec.platform = Gem::Platform::RUBY
-    spec.extensions = "ext/ed25519/extconf.rb"
+    spec.platform   = Gem::Platform::RUBY
+    spec.extensions = ["ext/ed25519_ref10/extconf.rb"]
   end
 
   spec.required_ruby_version = ">= 2.2.2"

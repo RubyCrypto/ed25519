@@ -19,12 +19,12 @@ module Ed25519
       raise ArgumentError, "seed must be #{KEY_SIZE}-bytes long" unless seed.length == KEY_SIZE
       @seed = seed
 
-      verify_key, @signing_key = Ed25519::Engine.create_keypair(seed)
+      verify_key, @keypair = Ed25519.provider.create_keypair(seed)
       @verify_key = VerifyKey.new(verify_key)
     end
 
     def sign(message)
-      Ed25519::Engine.sign(@signing_key, message)
+      Ed25519.provider.sign(@keypair, message)
     end
 
     def inspect
