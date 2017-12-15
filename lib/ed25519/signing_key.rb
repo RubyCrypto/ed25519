@@ -12,6 +12,18 @@ module Ed25519
       new SecureRandom.random_bytes(Ed25519::KEY_SIZE)
     end
 
+    # Create a SigningKey from a 64-byte Ed25519 keypair (i.e. public + private)
+    #
+    # @param keypair [String] 64-byte keypair value containing both seed + public key
+    def self.from_keypair(keypair)
+      raise TypeError, "expected String, got #{keypair.class}" unless keypair.is_a?(String)
+      raise ArgumentError, "expected 64-byte String, got #{keypair.bytesize}" unless keypair.bytesize == 64
+
+      new(keypair[0, KEY_SIZE]).tap do |key|
+        raise ArgumentError, "corrupt keypair" unless keypair[KEY_SIZE, KEY_SIZE] == key.verify_key.to_bytes
+      end
+    end
+
     # Create a new Ed25519::SigningKey from the given seed value
     #
     # @param seed [String] 32-byte seed value from which the key should be derived
