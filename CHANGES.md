@@ -1,3 +1,10 @@
+# [1.2.1] (2017-12-15)
+
+[1.2.1]: https://github.com/cryptosphere/x25519/compare/v1.2.0...v1.2.1
+
+* [#14](https://github.com/cryptosphere/ed25519/pull/14)
+  Support MRI 2.0+
+
 # [1.2.0] (2017-12-15)
 
 [1.2.0]: https://github.com/cryptosphere/x25519/compare/v1.1.0...v1.2.0

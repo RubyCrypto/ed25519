@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Ed25519
-  VERSION = "1.2.0"
+  VERSION = "1.2.1"
 end
