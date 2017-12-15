@@ -7,7 +7,7 @@ module Ed25519
     #
     # @param key [String] 32-byte string representing a serialized public key
     def initialize(key)
-      raise ArgumentError, "seed must be 32 bytes long" unless key.length == KEY_SIZE
+      Ed25519.validate_key_bytes(key)
       @key_bytes = key
     end
 
