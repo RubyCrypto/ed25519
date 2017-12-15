@@ -16,9 +16,9 @@ module Ed25519
     #
     # @param seed [String] 32-byte seed value from which the key should be derived
     def initialize(seed)
-      raise ArgumentError, "seed must be #{KEY_SIZE}-bytes long" unless seed.length == KEY_SIZE
-      @seed = seed
+      Ed25519.validate_key_bytes(seed)
 
+      @seed = seed
       @keypair = Ed25519.provider.create_keypair(seed)
       @verify_key = VerifyKey.new(@keypair[32, 32])
     end

@@ -35,6 +35,13 @@ module Ed25519
     self.provider = Ed25519::Provider::Ref10
   end
 
+  # Ensure a serialized key meets the requirements
+  def validate_key_bytes(key_bytes)
+    raise TypeError, "expected String, got #{key_bytes.class}" unless key_bytes.is_a?(String)
+    return true if key_bytes.bytesize == KEY_SIZE
+    raise ArgumentError, "expected #{KEY_SIZE}-byte String, got #{key_bytes.bytesize}"
+  end
+
   # Perform a self-test to ensure the selected provider is working
   def self_test
     signature_key = Ed25519::SigningKey.new("A" * 32)
