@@ -58,6 +58,13 @@ You can read more on [Dan Bernstein's Ed25519 site](http://ed25519.cr.yp.to/).
 
 [Schnorr signature]: https://en.wikipedia.org/wiki/Schnorr_signature
 
+## Requirements
+
+**ed25519.rb** is tested on and supported by the following platforms:
+
+* MRI 2.0+
+* JRuby 9000+
+
 ## Installation
 
 Add this line to your application's Gemfile:
