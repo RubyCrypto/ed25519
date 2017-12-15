@@ -5,7 +5,7 @@
 [build-image]: https://travis-ci.org/cryptosphere/ed25519.svg?branch=master
 [build-link]: https://travis-ci.org/cryptosphere/ed25519
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
-[docs-link]: http://www.rubydoc.info/gems/ed25519/1.1.0
+[docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.0
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/cryptosphere/ed25519/blob/master/LICENSE
 

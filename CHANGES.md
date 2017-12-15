@@ -1,3 +1,13 @@
+# [1.2.0] (2017-12-15)
+
+[1.2.0]: https://github.com/cryptosphere/x25519/compare/v1.1.0...v1.2.0
+
+* [#13](https://github.com/cryptosphere/ed25519/pull/13)
+  Add `Ed25519::SigningKey.from_keypair`
+
+* [#12](https://github.com/cryptosphere/ed25519/pull/12)
+  Add `Ed25519.validate_key_bytes` method
+
 # [1.1.0] (2017-12-13)
 
 [1.1.0]: https://github.com/cryptosphere/x25519/compare/v1.0.0...v1.1.0
