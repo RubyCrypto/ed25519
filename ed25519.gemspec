@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 require File.expand_path("lib/ed25519/version", __dir__)

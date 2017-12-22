@@ -1,9 +1,11 @@
-# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Build Status][build-image]][build-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link]
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Build Status][build-image]][build-link] [![Appveyor CI Status][appveyor-image]][appveyor-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link]
 
 [gem-shield]: https://badge.fury.io/rb/ed25519.svg
 [gem-link]: https://rubygems.org/gems/ed25519
 [build-image]: https://travis-ci.org/cryptosphere/ed25519.svg?branch=master
 [build-link]: https://travis-ci.org/cryptosphere/ed25519
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/40bpyqqsx6fewnqm?svg=true
+[appveyor-link]: https://ci.appveyor.com/project/tarcieri/ed25519
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
 [docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.1
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
