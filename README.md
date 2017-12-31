@@ -4,7 +4,7 @@
 [gem-link]: https://rubygems.org/gems/ed25519
 [build-image]: https://travis-ci.org/crypto-rb/ed25519.svg?branch=master
 [build-link]: https://travis-ci.org/crypto-rb/ed25519
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/40bpyqqsx6fewnqm?svg=true
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/vvhin6cb9ux97nqu?svg=true
 [appveyor-link]: https://ci.appveyor.com/project/tarcieri/ed25519
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
 [docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.1
@@ -62,9 +62,9 @@ You can read more on [Dan Bernstein's Ed25519 site](http://ed25519.cr.yp.to/).
 
 ## Requirements
 
-**ed25519.rb** is tested on and supported by the following platforms:
+**ed25519.rb** is supported on and tested against the following platforms:
 
-* MRI 2.0+
+* MRI 2.0, 2.1, 2.2, 2.3, 2.4, 2.5
 * JRuby 9000+
 
 ## Installation
