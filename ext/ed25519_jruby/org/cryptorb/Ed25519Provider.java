@@ -1,4 +1,4 @@
-package org.cryptosphere;
+package org.cryptorb;
 
 import java.security.MessageDigest;
 import java.security.Signature;

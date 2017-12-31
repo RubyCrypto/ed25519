@@ -29,7 +29,7 @@ module Ed25519
   # Select the Ed25519::Provider to use based on the current environment
   if defined? JRUBY_VERSION
     require "ed25519_jruby"
-    self.provider = org.cryptosphere.Ed25519Provider.createEd25519Module(JRuby.runtime)
+    self.provider = org.cryptorb.Ed25519Provider.createEd25519Module(JRuby.runtime)
   else
     require "ed25519_ref10"
     self.provider = Ed25519::Provider::Ref10
