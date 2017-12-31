@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   if defined? JRUBY_VERSION
     spec.platform = "jruby"
-    spec.files << "lib/ed25519_java.jar"
+    spec.files << "lib/ed25519_jruby.jar"
   else
     spec.platform   = Gem::Platform::RUBY
     spec.extensions = ["ext/ed25519_ref10/extconf.rb"]
