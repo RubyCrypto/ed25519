@@ -7,7 +7,7 @@
 [appveyor-image]: https://ci.appveyor.com/api/projects/status/vvhin6cb9ux97nqu?svg=true
 [appveyor-link]: https://ci.appveyor.com/project/tarcieri/ed25519
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
-[docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.1
+[docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.2
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/crypto-rb/ed25519/blob/master/LICENSE
 
