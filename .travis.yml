@@ -1,4 +1,13 @@
 language: ruby
+cache: bundler
+
+before_install:
+  - gem update --system
+  - gem --version
+  - gem install bundler -v 1.16.1
+  - bundle --version
+
+bundler_args: --without development
 
 rvm:
   - jruby-9.1.15.0
@@ -7,8 +16,10 @@ rvm:
   - 2.2
   - 2.3.6
   - 2.4.3
+  - 2.5.0
 
-before_install: gem install bundler -v 1.16.0
+matrix:
+  fast_finish: true
 
 branches:
   only:
