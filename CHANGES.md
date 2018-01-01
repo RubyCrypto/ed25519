@@ -1,4 +1,11 @@
-# [1.2.2] (2017-12-31)
+## [1.2.3] (2017-12-31)
+
+[1.2.3]: https://github.com/crypto-rb/ed25519/compare/v1.2.2...v1.2.3
+
+* [#18](https://github.com/crypto-rb/ed25519/pull/18)
+  `ext/ed25519_ref10`: Consolidate fe.c and ge.c
+
+## [1.2.2] (2017-12-31)
 
 [1.2.2]: https://github.com/crypto-rb/ed25519/compare/v1.2.1...v1.2.2
 
@@ -8,14 +15,14 @@
 * [#16](https://github.com/crypto-rb/ed25519/pull/16)
   Move project to the crypto-rb GitHub organization
 
-# [1.2.1] (2017-12-15)
+## [1.2.1] (2017-12-15)
 
 [1.2.1]: https://github.com/crypto-rb/ed25519/compare/v1.2.0...v1.2.1
 
 * [#14](https://github.com/crypto-rb/ed25519/pull/14)
   Support MRI 2.0+
 
-# [1.2.0] (2017-12-15)
+## [1.2.0] (2017-12-15)
 
 [1.2.0]: https://github.com/crypto-rb/ed25519/compare/v1.1.0...v1.2.0
 
@@ -25,7 +32,7 @@
 * [#12](https://github.com/crypto-rb/ed25519/pull/12)
   Add `Ed25519.validate_key_bytes` method
 
-# [1.1.0] (2017-12-13)
+## [1.1.0] (2017-12-13)
 
 [1.1.0]: https://github.com/crypto-rb/ed25519/compare/v1.0.0...v1.1.0
 
@@ -38,7 +45,7 @@
 * [#8](https://github.com/crypto-rb/ed25519/pull/8)
   Use an attr_accessor for Ed25519.provider
 
-# [1.0.0] (2017-12-12)
+## [1.0.0] (2017-12-12)
 
 [1.0.0]: https://github.com/crypto-rb/ed25519/compare/v0.1.0...v1.0.0
 
