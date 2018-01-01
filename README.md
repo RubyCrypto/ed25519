@@ -155,7 +155,7 @@ code of conduct.
 
 ## License
 
-Copyright (c) 2012-2017 Tony Arcieri. Distributed under the MIT License. See
+Copyright (c) 2012-2018 Tony Arcieri. Distributed under the MIT License. See
 [LICENSE] for further details.
 
 [LICENSE]: https://github.com/crypto-rb/ed25519/blob/master/LICENSE
