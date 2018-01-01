@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
     described in RFC 8032.
   DESCRIPTION
   spec.homepage      = "https://github.com/crypto-rb/ed25519"
+  spec.license       = "MIT"
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
