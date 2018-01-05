@@ -62,6 +62,10 @@ You can read more on [Dan Bernstein's Ed25519 site](http://ed25519.cr.yp.to/).
 
 [Schnorr signature]: https://en.wikipedia.org/wiki/Schnorr_signature
 
+### Is it any good?
+
+[Yes.](http://news.ycombinator.com/item?id=3067434)
+
 ## Help and Discussion
 
 Have questions? Want to suggest a feature or change? Join a discussion group:
