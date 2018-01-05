@@ -1,3 +1,10 @@
+## [1.2.4] (2018-01-04)
+
+[1.2.4]: https://github.com/crypto-rb/ed25519/compare/v1.2.3...v1.2.4
+
+* Fix JRuby platform name
+* Add license information to gemspec
+
 ## [1.2.3] (2017-12-31)
 
 [1.2.3]: https://github.com/crypto-rb/ed25519/compare/v1.2.2...v1.2.3
