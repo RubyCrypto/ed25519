@@ -3,6 +3,9 @@
 require "bundler/setup"
 require "ed25519"
 require "support/provider_examples"
+require "coveralls"
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
