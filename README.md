@@ -62,6 +62,17 @@ You can read more on [Dan Bernstein's Ed25519 site](http://ed25519.cr.yp.to/).
 
 [Schnorr signature]: https://en.wikipedia.org/wiki/Schnorr_signature
 
+## Help and Discussion
+
+Have questions? Want to suggest a feature or change? Join a discussion group:
+
+* [Crypto.rb Gitter]: web-based chat about Ruby crypto projects including **ed25519**.
+* [Crypto.rb Google Group]: join via web or email ([crypto-rb+subscribe@googlegroups.com])
+
+[Crypto.rb Gitter]: https://gitter.im/crypto-rb/Lobby
+[Google Group]: https://groups.google.com/forum/#!forum/crypto-rb
+[crypto-rb+subscribe@googlegroups.com]: mailto:crypto-rb+subscribe@googlegroups.com?subject=subscribe
+
 ## Requirements
 
 **ed25519.rb** is supported on and tested against the following platforms:
