@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   if defined? JRUBY_VERSION
-    spec.platform = "jruby"
+    spec.platform = "java"
     spec.files << "lib/ed25519_jruby.jar"
   else
     spec.platform   = Gem::Platform::RUBY
