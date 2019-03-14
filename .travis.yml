@@ -17,8 +17,10 @@ rvm:
   - 2.3.6
   - 2.4.3
   - 2.5.0
-
+  - truffleruby
 matrix:
+  allow_failures:
+    - rvm: truffleruby
   fast_finish: true
 
 branches:
