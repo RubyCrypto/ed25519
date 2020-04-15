@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        ruby: [ ruby-2.4, ruby-2.5, ruby-2.6, ruby-2.7, ruby-head, jruby-9.2.10, jruby-9.2.11, truffleruby ]
+        os: [ ubuntu-latest ]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-
+
+      - name: bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - run: bundle exec rake compile spec
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.4
+
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: bundle-use-ruby-lint-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: bundle-use-ruby-lint-
+
+      - name: bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - run: bundle exec rake rubocop
