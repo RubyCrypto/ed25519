@@ -12,7 +12,9 @@ jobs:
     strategy:
       matrix:
         ruby: [ ruby-2.4, ruby-2.5, ruby-2.6, ruby-2.7, ruby-head, jruby-9.2.10, jruby-9.2.11, truffleruby ]
-        os: [ ubuntu-latest ]
+        os: [ ubuntu-latest, windows-latest ]
+        exclude:
+          - { ruby: truffleruby, os: windows-latest }
 
     runs-on: ${{ matrix.os }}
 
