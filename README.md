@@ -1,11 +1,9 @@
-# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Build Status][build-image]][build-link] [![Appveyor CI Status][appveyor-image]][appveyor-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link] [![Gitter Chat][gitter-image]][gitter-link]
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![CI Status][ci-image]][ci-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link] [![Gitter Chat][gitter-image]][gitter-link]
 
 [gem-shield]: https://badge.fury.io/rb/ed25519.svg
 [gem-link]: https://rubygems.org/gems/ed25519
-[build-image]: https://travis-ci.org/crypto-rb/ed25519.svg?branch=master
-[build-link]: https://travis-ci.org/crypto-rb/ed25519
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/4s05bcae0mow85v1?svg=true
-[appveyor-link]: https://ci.appveyor.com/project/tarcieri/ed25519
+[ci-image]: https://github.com/RubyCrypto/ed25519/workflows/CI/badge.svg
+[ci-link]: https://github.com/RubyCrypto/ed25519/actions?query=workflow%3ACI+branch%3Amaster
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
 [docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.4
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
