@@ -3,11 +3,31 @@ AllCops:
   DisplayCopNames: true
 
 #
-# Style
+# Gemspec
 #
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
+Gemspec/DuplicatedAssignment:
+  Enabled: false
+
+#
+# Layout
+#
+
+Lauout/LineLength:
+  Max: 128
+
+#
+# Lint
+#
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Lint/SuppressedException:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
 
 #
 # Metrics
@@ -28,8 +48,19 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Max: 100
 
-Metrics/LineLength:
-  Max: 128
-
 Metrics/MethodLength:
   Max: 25
+
+#
+# Naming
+#
+
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
+#
+# Style
+#
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
