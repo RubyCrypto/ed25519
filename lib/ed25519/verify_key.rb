@@ -25,6 +25,7 @@ module Ed25519
       end
 
       return true if Ed25519.provider.verify(@key_bytes, signature, message)
+
       raise VerifyError, "signature verification failed!"
     end
 
@@ -38,7 +39,7 @@ module Ed25519
 
     # Show hex representation of serialized coordinate in string inspection
     def inspect
-      "#<#{self.class}:#{@key_bytes.unpack('H*').first}>"
+      "#<#{self.class}:#{@key_bytes.unpack1('H*')}>"
     end
   end
 end
