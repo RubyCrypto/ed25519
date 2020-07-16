@@ -14,10 +14,10 @@ Gem::Specification.new do |spec|
   DESCRIPTION
   spec.homepage      = "https://github.com/crypto-rb/ed25519"
   spec.license       = "MIT"
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = Dir["{ext,lib}/**/*", "CHANGES.md", "LICENSE"]
   spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.extra_rdoc_files = ["README.md", "ed25519.png"]
 
   if defined? JRUBY_VERSION
     spec.platform = "java"
