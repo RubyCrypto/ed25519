@@ -5,7 +5,7 @@ require "ed25519/signing_key"
 require "ed25519/verify_key"
 
 # The Ed25519 digital signatre algorithm
-# rubocop:disable Metrics/LineLength,Style/IfUnlessModifier
+# rubocop:disable Layout/LineLength
 module Ed25519
   module_function
 
@@ -65,7 +65,7 @@ module Ed25519
     raise SelfTestFailure, "failed to detect an invalid signature" unless ex.is_a?(Ed25519::VerifyError)
   end
 end
-# rubocop:enable Metrics/LineLength,Style/IfUnlessModifier
+# rubocop:enable Layout/LineLength
 
 # Automatically run self-test when library loads
 Ed25519.self_test
