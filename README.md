@@ -7,7 +7,7 @@
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
 [docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.4
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
-[license-link]: https://github.com/crypto-rb/ed25519/blob/master/LICENSE
+[license-link]: https://github.com/RubyCrypto/ed25519/blob/master/LICENSE
 [gitter-image]: https://badges.gitter.im/badge.svg
 [gitter-link]: https://gitter.im/crypto-rb/Lobby
 
@@ -25,7 +25,7 @@ Montgomery form of Curve25519.
 
 [RFC 8032]: https://tools.ietf.org/html/rfc8032
 [str4d/ed25519-java]: https://github.com/str4d/ed25519-java
-[x25519 gem]: https://github.com/crypto-rb/x25519
+[x25519 gem]: https://github.com/RubyCrypto/x25519
 
 ## What is Ed25519?
 
@@ -163,7 +163,7 @@ Weaknesses in the random number source can potentially result in insecure keys.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/crypto-rb/ed25519.
+Bug reports and pull requests are welcome on GitHub at https://github.com/RubyCrypto/ed25519.
 This project is intended to be a safe, welcoming space for collaboration,
 and contributors areexpected to adhere to the [Contributor Covenant](http://contributor-covenant.org)
 code of conduct.
@@ -173,11 +173,11 @@ code of conduct.
 Copyright (c) 2012-2020 Tony Arcieri. Distributed under the MIT License. See
 [LICENSE] for further details.
 
-[LICENSE]: https://github.com/crypto-rb/ed25519/blob/master/LICENSE
+[LICENSE]: https://github.com/RubyCrypto/ed25519/blob/master/LICENSE
 
 ## Code of Conduct
 
 Everyone interacting in the **ed25519.rb** project’s codebases, issue trackers, chat
 rooms and mailing lists is expected to follow the [code of conduct].
 
-[code of conduct]: https://github.com/crypto-rb/ed25519/blob/master/CODE_OF_CONDUCT.md
+[code of conduct]: https://github.com/RubyCrypto/ed25519/blob/master/CODE_OF_CONDUCT.md
