@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
     A Ruby binding to the Ed25519 elliptic curve public-key signature system
     described in RFC 8032.
   DESCRIPTION
-  spec.homepage      = "https://github.com/crypto-rb/ed25519"
+  spec.homepage      = "https://github.com/RubyCrypto/ed25519"
   spec.license       = "MIT"
   spec.files         = Dir["{ext,lib}/**/*", "CHANGES.md", "LICENSE"]
   spec.bindir        = "exe"
