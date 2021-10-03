@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "bundler/setup"
 require "ed25519"
 require "support/provider_examples"
 require "coveralls"
