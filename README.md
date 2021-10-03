@@ -80,7 +80,7 @@ Have questions? Want to suggest a feature or change? Join a discussion group:
 **ed25519.rb** is supported on and tested against the following platforms:
 
 * MRI 2.4, 2.5, 2.6, 2.7, 3.0
-* JRuby 9.2.19
+* JRuby 9.2.19, 9.3.0
 
 ## Installation
 
