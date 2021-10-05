@@ -13,7 +13,7 @@ RSpec.describe Ed25519::VerifyKey do
   end
 
   it "raises Ed25519::VerifyError on bad signatures" do
-    bad_signature = signature[0...63] + "X"
+    bad_signature = "#{signature[0...63]}X"
     expect { verify_key.verify(bad_signature, message) }.to raise_error(Ed25519::VerifyError)
   end
 

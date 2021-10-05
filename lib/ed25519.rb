@@ -56,7 +56,7 @@ module Ed25519
     verify_key = signature_key.verify_key
     raise SelfTestFailure, "failed to verify a valid signature" unless verify_key.verify(signature, message)
 
-    bad_signature = signature[0...63] + "X"
+    bad_signature = "#{signature[0...63]}X"
     ex = nil
     begin
       verify_key.verify(bad_signature, message)

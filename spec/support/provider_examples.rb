@@ -22,7 +22,7 @@ RSpec.shared_examples "Ed25519::Provider" do
 
     expect(described_class.verify(verify_key, signature, message)).to eq true
 
-    bad_signature = signature[0...63] + "X"
+    bad_signature = "#{signature[0...63]}X"
     expect(described_class.verify(verify_key, bad_signature, message)).to eq false
   end
 end
