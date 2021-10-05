@@ -1,4 +1,4 @@
-# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![CI Status][ci-image]][ci-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link] [![Gitter Chat][gitter-image]][gitter-link]
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![CI Status][ci-image]][ci-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link]
 
 [gem-shield]: https://badge.fury.io/rb/ed25519.svg
 [gem-link]: https://rubygems.org/gems/ed25519
@@ -8,8 +8,6 @@
 [docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.4
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/RubyCrypto/ed25519/blob/master/LICENSE
-[gitter-image]: https://badges.gitter.im/badge.svg
-[gitter-link]: https://gitter.im/crypto-rb/Lobby
 
 A Ruby binding to the Ed25519 elliptic curve public-key signature system
 described in [RFC 8032].
