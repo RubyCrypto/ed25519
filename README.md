@@ -79,8 +79,8 @@ Have questions? Want to suggest a feature or change? Join a discussion group:
 
 **ed25519.rb** is supported on and tested against the following platforms:
 
-* MRI 2.4, 2.5, 2.6, 2.7
-* JRuby 9.2.10, 9.2.11
+* MRI 2.4, 2.5, 2.6, 2.7, 3.0
+* JRuby 9.2.19, 9.3.0
 
 ## Installation
 
@@ -170,7 +170,7 @@ code of conduct.
 
 ## License
 
-Copyright (c) 2012-2020 Tony Arcieri. Distributed under the MIT License. See
+Copyright (c) 2012-2021 Tony Arcieri. Distributed under the MIT License. See
 [LICENSE] for further details.
 
 [LICENSE]: https://github.com/RubyCrypto/ed25519/blob/master/LICENSE
