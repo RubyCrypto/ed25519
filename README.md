@@ -5,7 +5,7 @@
 [ci-image]: https://github.com/RubyCrypto/ed25519/workflows/CI/badge.svg
 [ci-link]: https://github.com/RubyCrypto/ed25519/actions?query=workflow%3ACI+branch%3Amaster
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
-[docs-link]: http://www.rubydoc.info/gems/ed25519/1.2.4
+[docs-link]: http://www.rubydoc.info/gems/ed25519/1.3.0
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-link]: https://github.com/RubyCrypto/ed25519/blob/master/LICENSE
 
