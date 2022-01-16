@@ -1,3 +1,13 @@
+## [1.3.0] (2022-01-16)
+
+[1.3.0]: https://github.com/crypto-rb/ed25519/compare/v1.2.4...v1.3.0
+
+- Bump rubocop dependencies. ([#30])
+- Add support for Ruby 3 & JRuby 9.3.0. ([#31])
+
+[#30]: https://github.com/crypto-rb/ed25519/pull/30
+[#31]: https://github.com/crypto-rb/ed25519/pull/31
+
 ## [1.2.4] (2018-01-04)
 
 [1.2.4]: https://github.com/crypto-rb/ed25519/compare/v1.2.3...v1.2.4
