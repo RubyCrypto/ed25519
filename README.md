@@ -1,6 +1,6 @@
 # ed25519.rb [![Latest Version][gem-shield]][gem-link] [![CI Status][ci-image]][ci-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link]
 
-[gem-shield]: https://badge.fury.io/rb/ed25519.svg
+[gem-shield]: https://img.shields.io/gem/v/ed25519?logo=ruby
 [gem-link]: https://rubygems.org/gems/ed25519
 [ci-image]: https://github.com/RubyCrypto/ed25519/workflows/CI/badge.svg
 [ci-link]: https://github.com/RubyCrypto/ed25519/actions?query=workflow%3ACI+branch%3Amaster
