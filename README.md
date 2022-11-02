@@ -1,4 +1,4 @@
-# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![CI Status][ci-image]][ci-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link]
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link] [![CI Status][ci-image]][ci-link] 
 
 [gem-shield]: https://img.shields.io/gem/v/ed25519?logo=ruby
 [gem-link]: https://rubygems.org/gems/ed25519
