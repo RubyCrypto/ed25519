@@ -11,7 +11,7 @@ jobs:
   test:
     strategy:
       matrix:
-        ruby: [ ruby-2.4, ruby-2.5, ruby-2.6, ruby-2.7, ruby-3.0, ruby-3.1, ruby-3.2, jruby-9.2.19, jruby-9.3.0, truffleruby ]
+        ruby: [ ruby-2.4, ruby-2.5, ruby-2.6, ruby-2.7, ruby-3.0, ruby-3.1, head, jruby-9.2.19, jruby-9.3.0, truffleruby ]
         os: [ ubuntu-latest, windows-latest ]
         exclude:
           - { ruby: truffleruby, os: windows-latest }
