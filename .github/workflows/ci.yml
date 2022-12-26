@@ -24,6 +24,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler: 2.3.26
 
       - uses: actions/cache@v3
         with:
@@ -47,8 +48,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.4
+          bundler: 2.3.26
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: bundle-use-ruby-lint-${{ hashFiles('**/Gemfile.lock') }}
