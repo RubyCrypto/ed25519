@@ -16,7 +16,6 @@ jobs:
         os: [ ubuntu-latest, windows-latest ]
         exclude:
           - { ruby: truffleruby, os: windows-latest }
-          - { ruby: ruby-3.2, os: windows-latest }
 
     runs-on: ${{ matrix.os }}
 
