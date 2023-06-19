@@ -62,3 +62,20 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - run: bundle exec rake rubocop
+- ad: Setup Go ortamı
+  kullanımlar: action/setup-go@v4.0.1
+  ile:
+    # İndirmek (gerekirse) ve kullanmak için Go sürümü. Semver özelliklerini ve aralıklarını destekler.
+    go-versiyonu: # isteğe bağlı
+    # go.mod veya go.work dosyasının yolu.
+    go-versiyon dosyası: # isteğe bağlı
+    # Eylemin her zaman sürüm spesifikasyonunu karşılayan mevcut en son sürümü kontrol etmesini istiyorsanız bu seçeneği true olarak ayarlayın
+    en son kontrol: # isteğe bağlı
+    # Geçiş sürümlerinden düğüm dağıtımlarını çekmek için kullanılır. Bir varsayılan olduğu için, bu genellikle kullanıcı tarafından sağlanmaz. Bu eylemi github.com'da çalıştırırken, varsayılan değer yeterlidir. GHES üzerinde çalışırken, hız sınırlaması yaşıyorsanız github.com için kişisel bir erişim belirteci iletebilirsiniz.
+    belirteç: # isteğe bağlı, varsayılan ${{ github.server_url == 'https://github.com' && github.token || '' }}
+    # Önbelleğe almanın gerekli olup olmadığını belirtmek için kullanılır. Önbelleğe almayı etkinleştirmek istiyorsanız, true olarak ayarlayın.
+    önbellek: # isteğe bağlı, varsayılan doğrudur
+    # Bir bağımlılık dosyasının yolunu belirtmek için kullanılır - go.sum
+    önbellek bağımlılığı yolu: # isteğe bağlı
+    # Go kullanmak için hedef mimari. Örnekler: x86, x64. Varsayılan olarak sistem mimarisini kullanır.
+    mimari: # isteğe bağlı
