@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "base64"
 require "securerandom"
 
 module Ed25519
@@ -56,5 +57,28 @@ module Ed25519
       seed
     end
     alias to_str to_bytes
+
+    # Return a .pem representation of this signing key
+    #
+    # @return [String] signing key converted to a pem string
+    def to_pem
+      # Create the private key object as defined in RFC8410
+      asn1 = OpenSSL::ASN1.Sequence(
+        [
+          OpenSSL::ASN1::Integer(OpenSSL::BN.new(0)),
+          OpenSSL::ASN1.Sequence(
+            [
+              OpenSSL::ASN1.ObjectId("ED25519")
+            ]
+          ),
+          OpenSSL::ASN1.OctetString(OpenSSL::ASN1.OctetString(to_bytes).to_der)
+        ]
+      )
+      <<~PEM
+        -----BEGIN PRIVATE KEY-----
+        #{Base64.strict_encode64(asn1.to_der)}
+        -----END PRIVATE KEY-----
+      PEM
+    end
   end
 end
