@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "base64"
+require "openssl"
+
 module Ed25519
   # Public key for verifying digital signatures
   class VerifyKey
@@ -36,6 +39,28 @@ module Ed25519
       @key_bytes
     end
     alias to_str to_bytes
+
+    # Return a .pem representation of this public key
+    #
+    # @return [String] verify key converted to a pem string
+    def to_pem
+      # Create a subjectPublicKeyInfo object as defined in RFC8410
+      subject_public_key_info = OpenSSL::ASN1.Sequence(
+        [
+          OpenSSL::ASN1.Sequence(
+            [
+              OpenSSL::ASN1.ObjectId("ED25519")
+            ]
+          ),
+          OpenSSL::ASN1.BitString(to_bytes)
+        ]
+      )
+      <<~PEM
+        -----BEGIN PUBLIC KEY-----
+        #{Base64.strict_encode64(subject_public_key_info.to_der)}
+        -----END PUBLIC KEY-----
+      PEM
+    end
 
     # Show hex representation of serialized coordinate in string inspection
     def inspect

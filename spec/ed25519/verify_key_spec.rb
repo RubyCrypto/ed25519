@@ -22,4 +22,15 @@ RSpec.describe Ed25519::VerifyKey do
     expect(bytes).to be_a String
     expect(bytes.length).to eq Ed25519::KEY_SIZE
   end
+
+  it "serializes to a PEM public key format that can be used by OpenSSL" do
+    pem_formatted_key = verify_key.to_pem
+    expect(pem_formatted_key).to be_a String
+    openssl_pkey = OpenSSL::PKey.read pem_formatted_key
+    expect(openssl_pkey).to be_a OpenSSL::PKey::PKey
+    expect { openssl_pkey.private_to_pem }.to raise_error(OpenSSL::PKey::PKeyError)
+    expect(openssl_pkey.public_to_pem).to eq pem_formatted_key
+    expect(openssl_pkey.verify(nil, signature, message)).to be true
+    expect(openssl_pkey.verify(nil, signature, "#{message}X")).to be false
+  end
 end
