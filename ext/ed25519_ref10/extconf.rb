@@ -2,8 +2,6 @@
 
 require "mkmf"
 
-# rubocop:disable Style/GlobalVars
-$CFLAGS << " -Wall -O3 -pedantic -std=c99"
-# rubocop:enable Style/GlobalVars
+append_cflags(["-Wall", "-O3", "-pedantic", "-std=c99"])
 
 create_makefile "ed25519_ref10"

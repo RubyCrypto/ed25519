@@ -1,8 +1,8 @@
-require:
+plugins:
   - rubocop-packaging
 
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 3.0
   DisplayCopNames: true
   NewCops: enable
 
@@ -11,6 +11,12 @@ AllCops:
 #
 
 Gemspec/DuplicatedAssignment:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Gemspec/RequireMFA:
   Enabled: false
 
 #

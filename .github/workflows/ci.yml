@@ -2,20 +2,31 @@ name: CI
 
 on:
   push:
-    branches: main
+    branches: [main]
 
   pull_request:
-    branches: main
+    branches: [main]
 
 jobs:
   test:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ ruby-2.4, ruby-2.5, ruby-2.6, ruby-2.7, ruby-3.0, ruby-3.1, ruby-3.2, jruby-9.2.19, jruby-9.3.0, truffleruby ]
-        os: [ ubuntu-latest, windows-latest ]
+        ruby:
+          [
+            ruby-3.0,
+            ruby-3.1,
+            ruby-3.2,
+            ruby-3.3,
+            ruby-3.4,
+            jruby-9.4.12,
+            jruby-10.0.0,
+            truffleruby,
+          ]
+        os: [ubuntu-latest, windows-latest]
         exclude:
           - { ruby: truffleruby, os: windows-latest }
+          - { ruby: jruby-10.0.0, os: windows-latest }
 
     runs-on: ${{ matrix.os }}
 
@@ -47,8 +58,8 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.4
-          bundler: 2.3.26
+          ruby-version: 3.0
+          bundler: 2.5.23
 
       - uses: actions/cache@v3
         with:
