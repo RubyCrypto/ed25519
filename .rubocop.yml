@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-packaging
 
 AllCops:
@@ -11,6 +11,12 @@ AllCops:
 #
 
 Gemspec/DuplicatedAssignment:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Gemspec/RequireMFA:
   Enabled: false
 
 #
