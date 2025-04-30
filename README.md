@@ -168,7 +168,7 @@ code of conduct.
 
 ## License
 
-Copyright (c) 2012-2021 Tony Arcieri. Distributed under the MIT License. See
+Copyright (c) 2012-2025 Tony Arcieri. Distributed under the MIT License. See
 [LICENSE] for further details.
 
 [LICENSE]: https://github.com/RubyCrypto/ed25519/blob/master/LICENSE
