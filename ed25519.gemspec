@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
     spec.extensions = ["ext/ed25519_ref10/extconf.rb"]
   end
 
-  spec.required_ruby_version = ">= 2.4.0"
+  spec.required_ruby_version = ">= 3.0"
   spec.add_development_dependency "bundler"
 end
