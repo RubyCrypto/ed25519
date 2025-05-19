@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 require "spec_helper"
 
 RSpec.describe Ed25519::SigningKey do
@@ -157,3 +159,5 @@ SIG
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
