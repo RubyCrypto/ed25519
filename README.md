@@ -77,7 +77,7 @@ Have questions? Want to suggest a feature or change? Join a discussion group:
 
 **ed25519.rb** is supported on and tested against the following platforms:
 
-- MRI 3.0, 3.1, 3.2, 3.3, 3.4
+- MRI 3.0, 3.1, 3.2, 3.3, 3.4, 4.0
 - JRuby 9.4.12, 10.0.0
 
 ## Installation
