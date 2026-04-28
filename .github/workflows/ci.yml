@@ -13,16 +13,15 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          [
-            ruby-3.0,
-            ruby-3.1,
-            ruby-3.2,
-            ruby-3.3,
-            ruby-3.4,
-            jruby-9.4.12,
-            jruby-10.0.0,
-            truffleruby,
-          ]
+          - ruby-3.0
+          - ruby-3.1
+          - ruby-3.2
+          - ruby-3.3
+          - ruby-3.4
+          - ruby-4.0
+          - jruby-9.4.12
+          - jruby-10.0.0
+          - truffleruby
         os: [ubuntu-latest, windows-latest]
         exclude:
           - { ruby: truffleruby, os: windows-latest }
@@ -31,22 +30,12 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-
-      - uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-
-
-      - name: bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - run: bundle exec rake compile spec
 
@@ -54,22 +43,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: "3.0"
           bundler: 2.5.23
-
-      - uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: bundle-use-ruby-lint-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: bundle-use-ruby-lint-
-
-      - name: bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - run: bundle exec rake rubocop
