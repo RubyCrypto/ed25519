@@ -1,9 +1,9 @@
-# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link] [![CI Status][ci-image]][ci-link] 
+# ed25519.rb [![Latest Version][gem-shield]][gem-link] [![Yard Docs][docs-image]][docs-link] [![License: MIT][license-image]][license-link] [![CI Status][ci-image]][ci-link]
 
 [gem-shield]: https://img.shields.io/gem/v/ed25519?logo=ruby
 [gem-link]: https://rubygems.org/gems/ed25519
-[ci-image]: https://github.com/RubyCrypto/ed25519/workflows/CI/badge.svg
-[ci-link]: https://github.com/RubyCrypto/ed25519/actions?query=workflow%3ACI+branch%3Amaster
+[ci-image]: https://github.com/RubyCrypto/ed25519/actions/workflows/ci.yml/badge.svg
+[ci-link]: https://github.com/RubyCrypto/ed25519/actions/workflows/ci.yml?query=branch%3Amain
 [docs-image]: https://img.shields.io/badge/yard-docs-blue.svg
 [docs-link]: http://www.rubydoc.info/gems/ed25519/1.4.0
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
@@ -77,7 +77,7 @@ Have questions? Want to suggest a feature or change? Join a discussion group:
 
 **ed25519.rb** is supported on and tested against the following platforms:
 
-- MRI 3.0, 3.1, 3.2, 3.3, 3.4
+- MRI 3.0, 3.1, 3.2, 3.3, 3.4, 4.0
 - JRuby 9.4.12, 10.0.0
 
 ## Installation
