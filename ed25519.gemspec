@@ -14,7 +14,9 @@ Gem::Specification.new do |spec|
   DESCRIPTION
   spec.homepage      = "https://github.com/RubyCrypto/ed25519"
   spec.license       = "MIT"
-  spec.files         = Dir["{ext,lib}/**/*", "CHANGES.md", "LICENSE"]
+  spec.files = Dir["{ext,lib}/**/*", "CHANGES.md", "LICENSE"].reject do |path|
+    path.end_with?(".bundle", ".jar", ".so")
+  end
   spec.bindir        = "exe"
   spec.require_paths = ["lib"]
   spec.extra_rdoc_files = ["README.md", "ed25519.png"]
