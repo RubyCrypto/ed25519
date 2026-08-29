@@ -8,7 +8,7 @@ module Ed25519
     # @param key [String] 32-byte string representing a serialized public key
     def initialize(key)
       Ed25519.validate_key_bytes(key)
-      @key_bytes = key
+      @key_bytes = key.dup.freeze
     end
 
     # Verify an Ed25519 signature against the message
@@ -33,7 +33,7 @@ module Ed25519
     #
     # @return [String] bytestring serialization of this public key
     def to_bytes
-      @key_bytes
+      @key_bytes.dup
     end
     alias to_str to_bytes
 
